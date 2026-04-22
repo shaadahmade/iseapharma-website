@@ -27,6 +27,21 @@ const accordionItems = [
     title: 'IesaGuard Gloves',
     imageUrl: '/images/iesa-guard-gloves.jpg',
   },
+  {
+    id: 6,
+    title: 'MorePep SP Tablets',
+    imageUrl: '/images/morepep-sp-tablets.jpeg',
+  },
+  {
+    id: 7,
+    title: 'ProTiesa Powder',
+    imageUrl: '/images/protiesa-protein-powder.png',
+  },
+  {
+    id: 8,
+    title: 'Orogum T',
+    imageUrl: '/images/orogum-t.jpg',
+  },
 ];
 
 interface AccordionItemProps {
