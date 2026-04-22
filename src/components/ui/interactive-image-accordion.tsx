@@ -23,7 +23,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
     <div
       className={`
         relative h-[450px] rounded-2xl overflow-hidden cursor-pointer
-        transition-all duration-700 ease-in-out
+        transition-all duration-700 ease-in-out shrink-0 bg-slate-100
         ${isActive ? 'w-[400px]' : 'w-[60px]'}
       `}
       onMouseEnter={onMouseEnter}
@@ -32,21 +32,20 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
       <img
         src={image}
         alt={title}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover z-0"
         onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = 'https://placehold.co/400x450/2d3748/ffffff?text=Image+Error'; }}
       />
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      <div className={`absolute inset-0 bg-black transition-opacity duration-700 z-10 ${isActive ? 'bg-opacity-20' : 'bg-opacity-50'}`}></div>
 
       {/* Caption Text */}
       <span
         className={`
-          absolute text-white text-lg font-semibold whitespace-nowrap
+          absolute text-white text-lg font-semibold whitespace-nowrap z-20
           transition-all duration-300 ease-in-out
           ${
             isActive
-              ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0' // Active state: horizontal, bottom-center
-              // Inactive state: vertical, positioned at the bottom, for all screen sizes
+              ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0' 
               : 'w-auto text-left bottom-24 left-1/2 -translate-x-1/2 rotate-90'
           }
         `}
@@ -93,15 +92,21 @@ export function LandingAccordionItem({ items }: { items: Item[] }) {
 
           {/* Right Side: Image Accordion */}
           <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-            <div className="flex flex-row items-center justify-center gap-4 overflow-x-auto p-4 scrollbar-hide">
-              {items.map((item, index) => (
-                <AccordionItem
-                  key={item.id}
-                  item={item}
-                  isActive={index === activeIndex}
-                  onMouseEnter={() => handleItemHover(index)}
-                />
-              ))}
+            <div 
+              className="flex flex-row items-center justify-start gap-4 overflow-x-auto p-4"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
+              <div className="flex flex-row gap-4 no-scrollbar">
+                {items.map((item, index) => (
+                  <AccordionItem
+                    key={item.id}
+                    item={item}
+                    isActive={index === activeIndex}
+                    onMouseEnter={() => handleItemHover(index)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
