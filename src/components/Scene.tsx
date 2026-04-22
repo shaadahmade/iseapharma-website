@@ -2,13 +2,22 @@ import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, ContactShadows, PresentationControls } from '@react-three/drei';
 import { DentalProductModel } from './ProductModel';
-import { useScroll } from 'motion/react';
+import { useScroll, motion, useTransform } from 'motion/react';
 
 export function Scene({ onBottleClick }: { onBottleClick?: () => void }) {
   const { scrollYProgress } = useScroll();
+  
+  // 'Behind' banishment: Model starts fading out earlier, 
+  // as the user nears the bottom of the Hero section.
+  const opacity = useTransform(scrollYProgress, [0.10, 0.20], [1, 0]);
+  const pointerEvents = useTransform(scrollYProgress, (latest) => latest > 0.20 ? 'none' : 'auto');
+  const display = useTransform(scrollYProgress, (latest) => latest > 0.22 ? 'none' : 'block');
 
   return (
-    <div className="fixed inset-0 z-[-1]">
+    <motion.div 
+      style={{ opacity, pointerEvents: pointerEvents as any, display }}
+      className="fixed inset-0 z-[-1]"
+    >
       <Canvas shadows camera={{ position: [0, 0, 4], fov: 45 }}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.8} />
@@ -50,6 +59,6 @@ export function Scene({ onBottleClick }: { onBottleClick?: () => void }) {
           <Environment preset="studio" />
         </Suspense>
       </Canvas>
-    </div>
+    </motion.div>
   );
 }

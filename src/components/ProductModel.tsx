@@ -125,53 +125,99 @@ export function DentalProductModel({ scrollY, onClick }: { scrollY: any, onClick
   const liquidGroupRef = useRef<THREE.Group>(null);
   const prevScroll = useRef(0);
   const velocity = useRef(0);
+  const mouseVelocity = useRef(new THREE.Vector2(0, 0));
+  const prevMouse = useRef(new THREE.Vector2(0, 0));
+  const currentMouse = useRef(new THREE.Vector2(0, 0));
+  const slosh = useRef({ x: 0, z: 0 });
   const { viewport } = useThree();
   const isMobile = viewport.width < 5;
+
+  // Global mouse tracking since the canvas might be behind other layers
+  useMemo(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Normalize mouse to -1 to 1 range (R3F style)
+      currentMouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      currentMouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   useFrame((state) => {
     if (!meshRef.current) return;
     const scroll = scrollY.get();
     const time = state.clock.elapsedTime;
+    const mouse = currentMouse.current;
+
+    // Calculate mouse velocity for interactive sloshing (Reduced sensitivity for less 'jiggle')
+    mouseVelocity.current.set(
+      THREE.MathUtils.lerp(mouseVelocity.current.x, (mouse.x - prevMouse.current.x) * 6, 0.05),
+      THREE.MathUtils.lerp(mouseVelocity.current.y, (mouse.y - prevMouse.current.y) * 6, 0.05)
+    );
+    prevMouse.current.copy(mouse);
 
     // Calculate scroll velocity
-    velocity.current = THREE.MathUtils.lerp(velocity.current, (scroll - prevScroll.current) * 15, 0.1);
+    velocity.current = THREE.MathUtils.lerp(velocity.current, (scroll - prevScroll.current) * 10, 0.1);
     prevScroll.current = scroll;
 
-    // START FROM LABEL: Ensure rotation starts at 0 (label side)
-    meshRef.current.position.y = Math.sin(time) * 0.04;
+    // Inertial Slosh Spring System (More damping for stability)
+    const targetSloshX = velocity.current * 0.1 + mouseVelocity.current.y * 0.05;
+    const targetSloshZ = mouseVelocity.current.x * 0.1;
 
-    // Responsive Shift: Center on mobile, Shift right on desktop
+    slosh.current.x = THREE.MathUtils.lerp(slosh.current.x, targetSloshX, 0.05);
+    slosh.current.z = THREE.MathUtils.lerp(slosh.current.z, targetSloshZ, 0.05);
+
+    // Subtle swaying animation
+    meshRef.current.position.y = Math.sin(time * 0.5) * 0.04;
+
+    // Responsive Shift
     const targetX = isMobile ? 0 : 1.2;
     meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, targetX, 0.1);
 
-    // ENTRANCE ANIMATION: Smooth pop-in and spin
+    // Entrance Animation
     const spawnDuration = 1.5;
     const spawnScale = THREE.MathUtils.smoothstep(time, 0, spawnDuration);
 
-    // Strict Parallax Scale - no random pulsing
     const baseScaleValue = isMobile ? 0.8 : 0.95;
     const scrollScale = baseScaleValue + scroll * 0.15;
     const baseScale = scrollScale * spawnScale;
     meshRef.current.scale.set(baseScale, baseScale, baseScale);
 
-    // Strict Parallax Rotation - tied only to scroll, no continuous spinning
+    // Parallax Rotation
     meshRef.current.rotation.y = (scroll * Math.PI * 4) + Math.PI;
+    
+    // Interactive Tilt: Slight tilt of the bottle itself toward mouse (Smoother)
+    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, mouse.y * 0.05, 0.05);
+    meshRef.current.rotation.z = THREE.MathUtils.lerp(meshRef.current.rotation.z, -mouse.x * 0.05, 0.05);
 
-    // Realistic Liquid Sloshing - Reacts to Scroll Velocity
+    // REALISTIC LIQUID PHYSICS
     if (liquidGroupRef.current) {
-      // Liquid tilts based on scroll movement speed
-      const tiltIntensity = velocity.current * 0.15;
-      liquidGroupRef.current.rotation.z = THREE.MathUtils.lerp(liquidGroupRef.current.rotation.z, Math.sin(time * 0.5) * -0.02 + tiltIntensity, 0.1);
-      liquidGroupRef.current.rotation.x = THREE.MathUtils.lerp(liquidGroupRef.current.rotation.x, Math.cos(time * 0.8) * 0.015, 0.1);
+      // Liquid sloshes in the opposite direction of movement (Inertia) - Smoother lerp
+      liquidGroupRef.current.rotation.z = THREE.MathUtils.lerp(
+        liquidGroupRef.current.rotation.z, 
+        Math.sin(time * 0.5) * -0.01 + slosh.current.z, 
+        0.08
+      );
+      liquidGroupRef.current.rotation.x = THREE.MathUtils.lerp(
+        liquidGroupRef.current.rotation.x, 
+        Math.cos(time * 0.5) * 0.01 + slosh.current.x, 
+        0.08
+      );
 
-      // Liquid "compresses" slightly during fast movement
-      const compression = 1 - Math.abs(velocity.current) * 0.02;
+      // Volume preservation/Compression: Liquid "bulges" slightly when shaken
+      const movementIntensity = Math.abs(velocity.current) + mouseVelocity.current.length();
+      const compression = 1 - movementIntensity * 0.01;
       liquidGroupRef.current.scale.y = THREE.MathUtils.lerp(liquidGroupRef.current.scale.y, compression, 0.1);
+      
+      // Dynamic Distortion: Liquid becomes more "turbulent" (Lowered max distortion)
+      if (liquidMatRef.current) {
+        const targetDistort = 0.04 + movementIntensity * 0.05;
+        (liquidMatRef.current as any).distort = THREE.MathUtils.lerp((liquidMatRef.current as any).distort, targetDistort, 0.05);
+        (liquidMatRef.current as any).speed = 1.5 + movementIntensity * 1.5;
+      }
     }
 
-
     if (liquidMatRef.current) {
-      // Very subtle internal shimmer/glow pulsing to keep color rich
       const glowPulse = 0.15 + Math.sin(time * 0.8) * 0.05;
       liquidMatRef.current.emissiveIntensity = glowPulse;
     }

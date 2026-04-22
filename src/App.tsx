@@ -362,7 +362,7 @@ export default function App() {
             transition={{ duration: 0.5 }}
           >
             {/* Hero Section */}
-            <section className="relative min-h-[100svh] flex flex-col lg:flex-row items-end lg:items-center pt-20 overflow-hidden">
+            <section className="relative h-screen w-screen snap-start flex flex-col lg:flex-row items-end lg:items-center pt-20 overflow-hidden">
         
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-16 items-end lg:items-center relative z-10 py-8 pb-12 lg:py-0">
           {/* On mobile: glass card wraps the text so it's readable over the 3D scene */}
@@ -375,8 +375,8 @@ export default function App() {
           >
             
             <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-slate-900 leading-[0.95] mb-5 sm:mb-8 tracking-tighter">
-              Dental Care <br/>
-              <span className="text-emerald-600">Reimagined.</span>
+              <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>Dental Care</motion.span> <br/>
+              <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="text-emerald-600">Reimagined.</motion.span>
             </h1>
             
             <p className="text-base sm:text-lg md:text-xl text-slate-500 mb-8 sm:mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed">
@@ -436,15 +436,16 @@ export default function App() {
       </section>
 
       {/* Vision Section */}
-      <section id="about" className="py-14 sm:py-24 px-4 sm:px-6 bg-white relative z-10">
+      <section id="about" className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 bg-white/40 backdrop-blur-2xl relative z-10 border-y border-white/20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-5 sm:mb-8">Our Vision</h2>
-            <p className="text-lg sm:text-2xl text-slate-600 leading-relaxed italic">
+            <h2 className="text-4xl sm:text-6xl font-bold mb-8 sm:mb-12">Our Vision</h2>
+            <p className="text-xl sm:text-4xl text-slate-600 leading-relaxed italic font-medium px-4">
               "At Iesa Pharma Dental Products, our vision is to revolutionize oral healthcare by providing innovative, high-quality dental products that empower individuals to achieve and maintain optimal oral health."
             </p>
             <div className="w-20 h-1 bg-sky-500 mx-auto mt-6 sm:mt-8 rounded-full"></div>
@@ -453,61 +454,93 @@ export default function App() {
       </section>
 
       {/* Promotional Banner */}
-      <section className="px-3 sm:px-6 py-8 sm:py-12 relative z-10">
-        <div className="max-w-7xl mx-auto">
+      <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 relative z-10">
+        <div className="max-w-6xl mx-auto w-full">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-slate-900 shadow-2xl"
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3.5rem] bg-slate-950 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/5"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 opacity-90" />
-            <div className="relative px-6 py-10 sm:px-8 sm:py-14 md:px-16 md:py-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-              <div className="space-y-4 sm:space-y-6 max-w-2xl text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-4 py-1 bg-emerald-500 text-white rounded-full text-sm font-bold">
+            {/* Background Polish */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950/30" />
+            
+            <div className="relative grid lg:grid-cols-2 items-center">
+              {/* Left Content */}
+              <div className="p-8 sm:p-12 md:p-16 lg:p-20 space-y-6 sm:space-y-8 relative z-10">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-black uppercase tracking-widest border border-emerald-500/30">
                   <Percent size={14} /> Flash Sale: 50% OFF
                 </div>
-                <h2 className="text-3xl sm:text-5xl md:text-7xl font-black text-white leading-tight uppercase tracking-tighter">
-                  Say Goodbye to <br/><span className="text-emerald-400">Bad Breath</span>
+                
+                <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[0.85] uppercase tracking-tighter">
+                  SAY GOODBYE <br/>
+                  TO <br/>
+                  <span className="text-emerald-500 text-6xl sm:text-8xl md:text-9xl block mt-2">BAD BREATH</span>
                 </h2>
-                <p className="text-slate-300 text-sm sm:text-lg">Experience clinical-grade freshness with Periogum Plus. The #1 recommendation by top Indian dentists.</p>
+                
+                <p className="text-slate-400 text-lg sm:text-xl max-w-md leading-relaxed">
+                  Experience clinical-grade freshness with Periogum Plus. The #1 recommendation by top Indian dentists.
+                </p>
               </div>
 
-              <div className="flex flex-row md:flex-col items-center gap-4 sm:gap-6">
-                <div className="w-20 h-20 sm:w-32 sm:h-32 bg-white rounded-full flex items-center justify-center p-2 shrink-0">
-                  <div className="w-full h-full bg-emerald-50 rounded-full flex flex-col items-center justify-center text-emerald-600 leading-none">
-                    <span className="text-xl sm:text-3xl font-black">50%</span>
-                    <span className="text-[10px] sm:text-xs font-bold uppercase">OFF</span>
-                  </div>
+              {/* Right Content / Visuals */}
+              <div className="relative h-full min-h-[400px] flex items-center justify-center p-8 lg:p-20 overflow-hidden">
+                {/* Background Bottle Graphic */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none">
+                  <img src="/images/periogum-plus.png" className="h-[120%] w-auto object-contain rotate-12 scale-110" alt="" />
                 </div>
-                
-                <button 
-                  onClick={() => window.open('https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806', '_blank')}
-                  className="px-5 sm:px-10 py-3 sm:py-5 bg-white text-slate-900 rounded-2xl font-black text-sm sm:text-xl hover:bg-emerald-400 transition-all shadow-xl shadow-white/10 flex items-center gap-2 sm:gap-4 group"
-                >
-                  <span className="text-red-600 font-black">BUY ON</span>
-                  <span className="tracking-widest">TATA 1MG</span>
-                  <ChevronRight className="group-hover:translate-x-2 transition-transform" />
-                </button>
-              </div>
-              
-              {/* Decorative Floating Bottle Background */}
-              <div className="absolute right-0 top-0 h-full w-1/3 opacity-20 pointer-events-none hidden lg:block overflow-hidden">
-                 <img src="/images/periogum-plus.png" className="h-full w-auto object-cover scale-150 rotate-12 mt-20" alt="" />
+
+                <div className="relative z-10 flex flex-col items-center gap-8">
+                  {/* Floating Discount Circle */}
+                  <motion.div 
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="w-32 h-32 sm:w-40 sm:h-40 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex flex-col items-center justify-center text-white shadow-2xl"
+                  >
+                    <span className="text-4xl sm:text-5xl font-black">50%</span>
+                    <span className="text-xs font-black uppercase tracking-widest opacity-60">OFF</span>
+                  </motion.div>
+                  
+                  {/* Buy Button */}
+                  <button 
+                    onClick={() => window.open('https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806', '_blank')}
+                    className="group bg-white text-slate-950 px-8 py-5 rounded-2xl font-black text-lg sm:text-xl hover:bg-emerald-400 transition-all flex items-center gap-4 shadow-2xl hover:shadow-emerald-500/20"
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-red-600">BUY ON</span>
+                      <span>TATA 1MG</span>
+                    </span>
+                    <ChevronRight className="group-hover:translate-x-2 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
+
+            {/* Decorative Light Leak */}
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
           </motion.div>
+        </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20 group">
+          <div className="w-10 h-1.5 bg-slate-400 rounded-full" />
         </div>
       </section>
 
       {/* Catalog - Product Grid */}
-      <section id="products" className="py-14 sm:py-24 px-4 sm:px-6 relative z-10 overflow-hidden">
+      <section id="products" className="min-h-screen w-screen snap-start flex items-center py-20 px-4 sm:px-6 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
-          <div className="flex items-end justify-between mb-10 sm:mb-16">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            className="flex items-end justify-between mb-10 sm:mb-16"
+          >
             <div>
               <h2 className="text-3xl sm:text-5xl font-bold mb-3 sm:mb-4">Product Catalog</h2>
               <p className="text-slate-500 max-w-md text-sm sm:text-base">Precision formulated solutions for every dental requirement.</p>
             </div>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             {products.map((product, idx) => (
@@ -564,27 +597,22 @@ export default function App() {
       </section>
 
       {/* Why Choose Us */}
-      <section id="why-us" className="py-16 sm:py-32 px-4 sm:px-6 bg-slate-950 text-white relative z-10 overflow-hidden">
+      <section id="why-us" className="min-h-screen w-screen snap-start flex items-center py-20 px-4 sm:px-6 bg-slate-950 text-white relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
-          <div className="text-center mb-20">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter"
-            >
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter">
               Why Choose <span className="text-emerald-400">Iesa Pharma</span>?
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-slate-400 text-base sm:text-xl max-w-2xl mx-auto"
-            >
+            </h2>
+            <p className="text-slate-400 text-base sm:text-xl max-w-2xl mx-auto">
               Building the future of oral healthcare through innovation, precision, and unwavering quality standards.
-            </motion.p>
-          </div>
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {valueProps.map((prop, idx) => (
@@ -646,25 +674,38 @@ export default function App() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-14 sm:py-24 px-4 sm:px-6 bg-white/80 backdrop-blur-sm relative z-10">
+      <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 bg-white/80 backdrop-blur-sm relative z-10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-16">Trusted Testimonials</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
-            {testimonials.map((t, idx) => (
-              <div key={idx} className="p-6 sm:p-10 bg-slate-50 rounded-2xl sm:rounded-3xl relative">
-                <Star className="text-yellow-400 fill-current mb-6" size={24} />
-                <p className="text-base sm:text-xl text-slate-700 italic mb-6 sm:mb-8">
-                  "{t.text}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-slate-200">
-                    <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-16">Trusted Testimonials</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
+              {testimonials.map((t, idx) => (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.2 }}
+                  className="p-6 sm:p-10 bg-slate-50 rounded-2xl sm:rounded-3xl relative"
+                >
+                  <Star className="text-yellow-400 fill-current mb-6" size={24} />
+                  <p className="text-base sm:text-xl text-slate-700 italic mb-6 sm:mb-8">
+                    "{t.text}"
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-slate-200">
+                      <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="font-bold text-slate-900">{t.name}</div>
                   </div>
-                  <div className="font-bold text-slate-900">{t.name}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
           </motion.div>
@@ -751,27 +792,21 @@ export default function App() {
       </AnimatePresence>
 
       {/* Map and Contact Form Section */}
-      <section id="contact" className="py-16 sm:py-32 px-4 sm:px-6 bg-white relative z-10 border-t border-slate-100 overflow-hidden">
+      <section id="contact" className="min-h-screen w-screen snap-start flex items-center py-20 px-4 sm:px-6 bg-white relative z-10 border-t border-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
-          <div className="text-center mb-20">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter text-slate-900"
-            >
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter text-slate-900">
               Get in <span className="text-emerald-600">Touch</span>
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-slate-500 text-base sm:text-xl max-w-2xl mx-auto"
-            >
+            </h2>
+            <p className="text-slate-500 text-base sm:text-xl max-w-2xl mx-auto">
               Have questions about our clinical formulations? Our professional team is here to assist you with any inquiries.
-            </motion.p>
-          </div>
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
             
