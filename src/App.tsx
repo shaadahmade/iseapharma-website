@@ -21,7 +21,7 @@ export default function App() {
       category: "Mouthwash",
       subtitle: "Chlorhexidine Gluconate Solution I.P. 0.2% w/v",
       desc: "Prevents the formation of dental plaques.",
-      image: "https://www.iesapharma.com/wp-content/uploads/2023/07/periogum-plus-1.png",
+      image: "/images/periogum-plus.png",
       primaryUse: "Effective against gingivitis, plaque formation, and maintenance of oral hygiene.",
       size: "150 ml",
       benefits: ["Kills 99.9% of oral bacteria", "Reduces gum inflammation", "Prevents bleeding symptoms", "Long-lasting fresh breath"],
@@ -33,7 +33,7 @@ export default function App() {
       category: "Mouthwash",
       subtitle: "Daily Oral Rinse for Gum Care",
       desc: "For gingivitis and maintenance of oral hygiene.",
-      image: "https://www.iesapharma.com/wp-content/uploads/2023/07/IMG_20190415_213348_755-1.jpg",
+      image: "/images/periogum-mouthwash.jpg",
       primaryUse: "Broad spectrum anti-microbial protection for clinical dental health.",
       size: "100 ml",
       benefits: ["Prevents gum recession", "Gentle on sensitive tissues", "Alcohol-free formula", "Clinically proven efficacy"],
@@ -45,7 +45,7 @@ export default function App() {
       category: "Other",
       subtitle: "Anti-inflammatory & Analgesic Relief",
       desc: "Listed under general products",
-      image: "https://www.iesapharma.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-10-31-at-11.22.14-PM.jpeg",
+      image: "/images/morepep-sp-tablets.jpeg",
       primaryUse: "Relief from inflammation and pain associated with dental procedures.",
       size: "10 Tablets",
       benefits: ["Fast-acting formula", "Reduces swelling", "Post-surgical recovery support", "Professional strength"],
@@ -57,7 +57,7 @@ export default function App() {
       category: "Oral Gel",
       subtitle: "Fast-acting Pain Relief Gel",
       desc: "Fast relief from pain due to mouth ulcers.",
-      image: "https://www.iesapharma.com/wp-content/uploads/2023/07/laboratory-tests-1.png",
+      image: "/images/lignowin-gel.png",
       primaryUse: "Soothing relief for mouth ulcers and oral lesions.",
       size: "10g Tube",
       benefits: ["Instant numbing effect", "Promotes faster healing", "Forms protective layer", "Sugar-free gel base"],
@@ -69,7 +69,7 @@ export default function App() {
       category: "Gum Paint",
       subtitle: "Advanced Relief for Bleeding Gums",
       desc: "A touch of relief for bleeding gums.",
-      image: "https://www.iesapharma.com/wp-content/uploads/2023/08/2.png",
+      image: "/images/orogum-gum-paint.png",
       primaryUse: "Direct application for swollen, spongy, and receding gums.",
       size: "15 ml",
       benefits: ["Stops gum bleeding instantly", "Tightens loose gums", "Antiseptic action", "Localized clinical treatment"],
@@ -81,7 +81,7 @@ export default function App() {
       category: "Other",
       subtitle: "Premium Latex Examination Gloves",
       desc: "Latex medical examination gloves.",
-      image: "https://www.iesapharma.com/wp-content/uploads/2023/07/iesa-guard.jpg",
+      image: "/images/iesa-guard-gloves.jpg",
       primaryUse: "Maximum protection and grip for clinical procedures.",
       size: "Box of 100",
       benefits: ["Excellent tactile sensitivity", "Micro-roughened surface", "Powder-free option", "High tear resistance"],
@@ -93,7 +93,7 @@ export default function App() {
       category: "Other",
       subtitle: "High-Quality Nutritional Supplement",
       desc: "Proven antioxidant, quenches free radicals.",
-      image: "https://www.iesapharma.com/wp-content/uploads/2023/08/4.png",
+      image: "/images/protiesa-protein-powder.png",
       primaryUse: "Nutritional support for post-dental surgery recovery.",
       size: "200g Tin",
       benefits: ["Rich in essential amino acids", "Antioxidant protection", "Supports immune system", "Easy to digest"],
@@ -105,7 +105,7 @@ export default function App() {
       category: "Gum Paint",
       subtitle: "Therapeutic Solution for Receding Gums",
       desc: "For bleeding, swollen, spongy, and receding/loose gums.",
-      image: "https://www.iesapharma.com/wp-content/uploads/2023/07/perigum-T.jpg",
+      image: "/images/orogum-t.jpg",
       primaryUse: "Targeted therapy for chronic gum issues and tissue maintenance.",
       size: "15 ml",
       benefits: ["Closes interdental gaps", "Strengthens periodontal bond", "Reduces tooth mobility", "Clinical precision formula"],
@@ -116,17 +116,17 @@ export default function App() {
   const testimonials = [
     {
       name: "Dr. Shivangi",
-      avatar: "https://www.iesapharma.com/wp-content/uploads/2021/05/testimonial-03-free-img.jpg",
+      avatar: "/images/testimonial-shivangi.jpg",
       text: "Iesa Pharma has become my go-to supplier for high-quality dental essentials, and I trust their products for my practice."
     },
     {
       name: "Dr. Arvind Chaurasia",
-      avatar: "https://www.iesapharma.com/wp-content/uploads/2023/07/FB_IMG_1690712137300.jpg",
+      avatar: "/images/testimonial-arvind.jpg",
       text: "I've noticed a significant improvement in my gum health since using this product regularly. It's a definite winner."
     }
   ];
 
-  const logoUrl = "https://www.iesapharma.com/wp-content/uploads/2023/07/iesa-pharma-logo-94x43.jpg";
+  const logoUrl = "/images/iesa-pharma-logo.jpg";
 
   const valueProps = [
     { icon: <Shield size={24} />, title: "Fully Licensed", text: "Bonded, And Insured" },
@@ -148,28 +148,37 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-end p-6 md:p-12"
+            className="fixed inset-0 z-[100] flex items-end sm:items-center sm:justify-end sm:p-6 md:p-12"
+            onClick={() => setSelectedProduct(null)}
           >
+            {/* Modal Backdrop */}
+            <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm" />
+            
             <motion.div 
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="bg-white shadow-2xl w-full h-full lg:max-w-xl md:max-w-lg lg:rounded-l-[2.5rem] overflow-y-auto relative border-l border-slate-100 flex flex-col"
+              className="bg-white shadow-2xl w-full h-[92dvh] sm:h-full sm:max-w-lg lg:max-w-xl sm:rounded-t-none rounded-t-[2rem] sm:rounded-l-[2.5rem] overflow-y-auto relative border-t sm:border-t-0 sm:border-l border-slate-100 flex flex-col z-10"
+              onClick={(e) => e.stopPropagation()}
             >
+              {/* Drag handle for mobile */}
+              <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
+                <div className="w-10 h-1 bg-slate-200 rounded-full" />
+              </div>
               <button 
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-8 right-8 w-12 h-12 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors z-10"
+                className="absolute top-4 right-4 sm:top-8 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors z-10"
               >
-                <X size={24} className="text-slate-600" />
+                <X size={20} className="text-slate-600" />
               </button>
 
-              <div className="p-10 pt-20">
+              <div className="p-5 sm:p-10 pt-12 sm:pt-20">
                 <div className="inline-flex items-center gap-2 px-4 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
                   <Beaker size={14} /> Clinical Formulation
                 </div>
-                <h2 className="text-5xl font-bold text-slate-900 mb-4">{selectedProduct.name}</h2>
-                <p className="text-xl text-slate-500 mb-8">{selectedProduct.subtitle}</p>
+                <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">{selectedProduct.name}</h2>
+                <p className="text-base sm:text-xl text-slate-500 mb-6 sm:mb-8">{selectedProduct.subtitle}</p>
 
                 <div className="space-y-6 mb-10">
                   <div className="flex gap-4 p-5 bg-sky-50 rounded-2xl border border-sky-100">
@@ -220,7 +229,7 @@ export default function App() {
               </div>
 
               {/* Backdrop Blur effect for footer of the modal */}
-              <div className="mt-auto p-10 bg-slate-50 border-t border-slate-100 italic text-slate-400 text-sm">
+              <div className="mt-auto p-5 sm:p-10 bg-slate-50 border-t border-slate-100 italic text-slate-400 text-sm">
                 Manufactured by Iesa Pharma Dental Products. For dental professional use only.
               </div>
             </motion.div>
@@ -238,7 +247,7 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           >
-            <img src={logoUrl} alt="Iesa Pharma Logo" className="h-10 w-auto" referrerPolicy="no-referrer" />
+            <img src={logoUrl} alt="Iesa Pharma Logo" className="h-10 w-auto" />
           </div>
 
           {/* Desktop Nav */}
@@ -353,45 +362,44 @@ export default function App() {
             transition={{ duration: 0.5 }}
           >
             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        {/* Atmospheric Background Glows */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-emerald-200/30 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-sky-200/20 rounded-full blur-[120px] pointer-events-none" />
+            <section className="relative min-h-[100svh] flex flex-col lg:flex-row items-end lg:items-center pt-20 overflow-hidden">
         
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-16 items-end lg:items-center relative z-10 py-8 pb-12 lg:py-0">
+          {/* On mobile: glass card wraps the text so it's readable over the 3D scene */}
+          <div className="lg:contents">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center lg:text-left pt-32 lg:pt-0"
+            className="text-center lg:text-left lg:bg-transparent bg-white/70 backdrop-blur-md lg:backdrop-blur-none rounded-3xl lg:rounded-none p-6 sm:p-8 lg:p-0 shadow-xl shadow-slate-200/40 lg:shadow-none border border-white/60 lg:border-none"
           >
             
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-slate-900 leading-[0.95] mb-8 tracking-tighter">
+            <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-slate-900 leading-[0.95] mb-5 sm:mb-8 tracking-tighter">
               Dental Care <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-sky-600">Reimagined.</span>
+              <span className="text-emerald-600">Reimagined.</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-500 mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
-              Precision-formulated oral health solutions trusted by thousands of clinical professionals across India.
+            <p className="text-base sm:text-lg md:text-xl text-slate-500 mb-8 sm:mb-12 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              Clinical-grade oral health solutions trusted by thousands of professionals.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 md:gap-6">
+            <div className="flex flex-col xs:flex-row items-stretch xs:items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4 md:gap-6">
               <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto px-10 py-5 bg-slate-900 text-white rounded-[1.5rem] font-bold text-xl hover:bg-emerald-600 transition-all shadow-[0_20px_50px_-15px_rgba(0,0,0,0.3)] flex items-center justify-center gap-3 group whitespace-nowrap"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full xs:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-slate-900 text-white rounded-xl font-bold text-base sm:text-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-3 group whitespace-nowrap"
               >
                 View Catalog <ChevronRight className="group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
               <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => window.open('https://www.1mg.com/marketer/iesa-pharmaceutical-pvt-ltd-88356', '_blank')}
-                className="w-full sm:w-auto px-8 py-5 bg-white border-2 border-slate-100 text-slate-900 rounded-[1.5rem] font-bold text-lg hover:border-red-500 hover:text-red-600 transition-all shadow-xl shadow-slate-200/50 flex items-center justify-center gap-3 group whitespace-nowrap"
+                className="w-full xs:w-auto px-5 sm:px-8 py-4 sm:py-5 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold text-sm sm:text-lg hover:border-slate-300 transition-all flex items-center justify-center gap-2 sm:gap-3 group whitespace-nowrap"
               >
-                <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600">
-                  <ShoppingCart size={16} />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-600">
+                  <ShoppingCart size={14} />
                 </div>
                 See us on <span className="text-red-600 font-black tracking-tight">TATA 1mg</span>
               </motion.button>
@@ -402,8 +410,7 @@ export default function App() {
                   {testimonials.map((t, i) => (
                     <motion.div 
                       key={i} 
-                      whileHover={{ y: -5, zIndex: 10 }}
-                      className="w-12 h-12 rounded-full border-4 border-white bg-slate-200 overflow-hidden shadow-lg"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-white bg-slate-200 overflow-hidden"
                     >
                       <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
                     </motion.div>
@@ -417,104 +424,65 @@ export default function App() {
                 </div>
               </div>
             </motion.div>
+          </div>
           
-          <div className="relative h-[400px] lg:h-[600px] flex items-center justify-center pointer-events-none">
-            {/* Callout Labels with Lines - Hidden on Mobile */}
-            <div className="absolute inset-0 z-20 overflow-visible hidden lg:block">
-              {/* Feature 1: Top Right (Pointing to Cap) */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute top-[22%] right-[2%] flex flex-row-reverse items-center gap-4 pointer-events-auto"
-              >
-                <div className="text-left">
-                  <h4 className="font-bold text-slate-900 text-lg mb-1 leading-none">Advanced Grip</h4>
-                  <p className="text-slate-500 text-[10px] leading-tight max-w-[120px]">Medical-grade ergonomic cap for precision.</p>
-                </div>
-                <div className="relative w-16 h-[1px] bg-slate-200">
-                  <div className="absolute right-0 -top-1 w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                  {/* Diagonal Line to cap */}
-                  <svg className="absolute top-0 right-16 w-48 h-48 overflow-visible pointer-events-none">
-                    <line x1="0" y1="0" x2="-90" y2="40" stroke="#cbd5e1" strokeWidth="1" />
-                    <circle cx="-90" cy="40" r="3" fill="#10b981" />
-                  </svg>
-                </div>
-              </motion.div>
 
-              {/* Feature 2: Bottom Left (Pointing to Body) */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8, duration: 1 }}
-                className="absolute bottom-[28%] left-[-10%] flex items-center gap-4 pointer-events-auto"
-              >
-                <div className="text-right">
-                  <h4 className="font-bold text-slate-900 text-lg mb-1 leading-none">0.2% w/v</h4>
-                  <p className="text-slate-500 text-[10px] leading-tight max-w-[120px]">Optimum clinical concentration for daily care.</p>
-                </div>
-                <div className="relative w-24 h-[1px] bg-slate-200">
-                  <div className="absolute left-0 -top-1 w-2 h-2 bg-sky-500 rounded-full shadow-[0_0_10px_rgba(14,165,233,0.5)]" />
-                  {/* Diagonal Line to body */}
-                  <svg className="absolute top-0 left-24 w-48 h-48 overflow-visible pointer-events-none">
-                    <line x1="0" y1="0" x2="130" y2="-60" stroke="#cbd5e1" strokeWidth="1" />
-                    <circle cx="130" cy="-60" r="3" fill="#0ea5e9" />
-                  </svg>
-                </div>
-              </motion.div>
-            </div>
+          {/* Desktop: empty column — the fixed 3D scene fills this visually */}
+          <div className="relative h-[400px] lg:h-[600px] items-center justify-center pointer-events-none hidden lg:flex">
           </div>
         </div>
+        {/* Bottom fade so model doesn't bleed into next section on mobile */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent lg:hidden pointer-events-none" />
       </section>
 
       {/* Vision Section */}
-      <section id="about" className="py-24 px-6 bg-white/80 backdrop-blur-sm relative z-10">
+      <section id="about" className="py-14 sm:py-24 px-4 sm:px-6 bg-white relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-8">Our Vision</h2>
-            <p className="text-2xl text-slate-600 leading-relaxed italic">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-5 sm:mb-8">Our Vision</h2>
+            <p className="text-lg sm:text-2xl text-slate-600 leading-relaxed italic">
               "At Iesa Pharma Dental Products, our vision is to revolutionize oral healthcare by providing innovative, high-quality dental products that empower individuals to achieve and maintain optimal oral health."
             </p>
-            <div className="w-20 h-1 bg-sky-500 mx-auto mt-8 rounded-full"></div>
+            <div className="w-20 h-1 bg-sky-500 mx-auto mt-6 sm:mt-8 rounded-full"></div>
           </motion.div>
         </div>
       </section>
 
       {/* Promotional Banner */}
-      <section className="px-6 py-12 relative z-10">
+      <section className="px-3 sm:px-6 py-8 sm:py-12 relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="relative overflow-hidden rounded-[3rem] bg-slate-900 shadow-2xl"
+            className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-slate-900 shadow-2xl"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 opacity-90" />
-            <div className="relative px-8 py-16 md:px-16 flex flex-col md:flex-row items-center justify-between gap-12">
-              <div className="space-y-6 max-w-2xl text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-4 py-1 bg-emerald-500 text-white rounded-full text-sm font-bold animate-pulse">
+            <div className="relative px-6 py-10 sm:px-8 sm:py-14 md:px-16 md:py-16 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+              <div className="space-y-4 sm:space-y-6 max-w-2xl text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-1 bg-emerald-500 text-white rounded-full text-sm font-bold">
                   <Percent size={14} /> Flash Sale: 50% OFF
                 </div>
-                <h2 className="text-5xl md:text-7xl font-black text-white leading-tight uppercase tracking-tighter">
+                <h2 className="text-3xl sm:text-5xl md:text-7xl font-black text-white leading-tight uppercase tracking-tighter">
                   Say Goodbye to <br/><span className="text-emerald-400">Bad Breath</span>
                 </h2>
-                <p className="text-slate-300 text-lg">Experience clinical-grade freshness with Periogum Plus. The #1 recommendation by top Indian dentists.</p>
+                <p className="text-slate-300 text-sm sm:text-lg">Experience clinical-grade freshness with Periogum Plus. The #1 recommendation by top Indian dentists.</p>
               </div>
 
-              <div className="flex flex-col items-center gap-6">
-                <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center p-2 shadow-2xl ring-8 ring-white/10 shrink-0">
+              <div className="flex flex-row md:flex-col items-center gap-4 sm:gap-6">
+                <div className="w-20 h-20 sm:w-32 sm:h-32 bg-white rounded-full flex items-center justify-center p-2 shrink-0">
                   <div className="w-full h-full bg-emerald-50 rounded-full flex flex-col items-center justify-center text-emerald-600 leading-none">
-                    <span className="text-3xl font-black">50%</span>
-                    <span className="text-xs font-bold uppercase">OFF</span>
+                    <span className="text-xl sm:text-3xl font-black">50%</span>
+                    <span className="text-[10px] sm:text-xs font-bold uppercase">OFF</span>
                   </div>
                 </div>
                 
                 <button 
                   onClick={() => window.open('https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806', '_blank')}
-                  className="px-10 py-5 bg-white text-slate-900 rounded-2xl font-black text-xl hover:bg-emerald-400 transition-all shadow-xl shadow-white/10 flex items-center gap-4 group"
+                  className="px-5 sm:px-10 py-3 sm:py-5 bg-white text-slate-900 rounded-2xl font-black text-sm sm:text-xl hover:bg-emerald-400 transition-all shadow-xl shadow-white/10 flex items-center gap-2 sm:gap-4 group"
                 >
                   <span className="text-red-600 font-black">BUY ON</span>
                   <span className="tracking-widest">TATA 1MG</span>
@@ -524,7 +492,7 @@ export default function App() {
               
               {/* Decorative Floating Bottle Background */}
               <div className="absolute right-0 top-0 h-full w-1/3 opacity-20 pointer-events-none hidden lg:block overflow-hidden">
-                 <img src="https://www.iesapharma.com/wp-content/uploads/2023/07/periogum-plus-1.png" className="h-full w-auto object-cover scale-150 rotate-12 mt-20" alt="" />
+                 <img src="/images/periogum-plus.png" className="h-full w-auto object-cover scale-150 rotate-12 mt-20" alt="" />
               </div>
             </div>
           </motion.div>
@@ -532,16 +500,16 @@ export default function App() {
       </section>
 
       {/* Catalog - Product Grid */}
-      <section id="products" className="py-24 px-6 relative z-10 overflow-hidden">
+      <section id="products" className="py-14 sm:py-24 px-4 sm:px-6 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
-          <div className="flex items-end justify-between mb-16">
+          <div className="flex items-end justify-between mb-10 sm:mb-16">
             <div>
-              <h2 className="text-5xl font-bold mb-4">Product Catalog</h2>
-              <p className="text-slate-500 max-w-md">Precision formulated solutions for every dental requirement.</p>
+              <h2 className="text-3xl sm:text-5xl font-bold mb-3 sm:mb-4">Product Catalog</h2>
+              <p className="text-slate-500 max-w-md text-sm sm:text-base">Precision formulated solutions for every dental requirement.</p>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             {products.map((product, idx) => (
               <motion.div
                 key={idx}
@@ -556,7 +524,7 @@ export default function App() {
                 }}
                 whileHover={{ y: -10 }}
                 onClick={() => setSelectedProduct(product)}
-                className="group bg-white border border-slate-100 rounded-[2rem] hover:border-emerald-200 transition-all hover:shadow-[0_20px_50px_-20px_rgba(16,185,129,0.3)] overflow-hidden flex flex-col h-full ring-1 ring-slate-100 hover:ring-emerald-100 cursor-pointer"
+                className="group bg-white border border-slate-200 rounded-[1.5rem] sm:rounded-[2rem] hover:border-emerald-200 transition-all hover:shadow-xl overflow-hidden flex flex-col h-full cursor-pointer"
               >
                 <div className="aspect-[4/5] w-full overflow-hidden bg-slate-50 relative">
                   <motion.img 
@@ -565,7 +533,6 @@ export default function App() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer" 
                   />
                   <div className="absolute top-5 left-5 w-12 h-12 bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center text-emerald-600 shadow-sm border border-white/50 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
                     <Droplet size={24} />
@@ -575,12 +542,10 @@ export default function App() {
                     {product.category}
                   </div>
                   
-                  {/* Overlay Gradient on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors">{product.name}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">{product.desc}</p>
+                <div className="p-4 sm:p-8 flex flex-col flex-grow">
+                  <h3 className="text-base sm:text-xl font-bold mb-2 sm:mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors">{product.name}</h3>
+                  <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-3 flex-grow">{product.desc}</p>
                   
                   <div className="flex items-center justify-between pt-4 border-t border-slate-50">
                     <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Medical Grade</span>
@@ -599,22 +564,14 @@ export default function App() {
       </section>
 
       {/* Why Choose Us */}
-      <section id="why-us" className="py-32 px-6 bg-slate-950 text-white relative z-10 overflow-hidden">
-        {/* Decorative Background Elements */}
-        <div 
-          className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" 
-          style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} 
-        />
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-sky-500/10 rounded-full blur-[150px] pointer-events-none" />
-
+      <section id="why-us" className="py-16 sm:py-32 px-4 sm:px-6 bg-slate-950 text-white relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-20">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-6xl font-black mb-6 tracking-tighter"
+              className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter"
             >
               Why Choose <span className="text-emerald-400">Iesa Pharma</span>?
             </motion.h2>
@@ -623,13 +580,13 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-slate-400 text-xl max-w-2xl mx-auto"
+              className="text-slate-400 text-base sm:text-xl max-w-2xl mx-auto"
             >
               Building the future of oral healthcare through innovation, precision, and unwavering quality standards.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {valueProps.map((prop, idx) => (
               <motion.div 
                 key={idx}
@@ -638,7 +595,7 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="p-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] hover:bg-white/10 hover:border-emerald-500/50 transition-all duration-500 group"
+                className="p-6 sm:p-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] sm:rounded-[2.5rem] hover:bg-white/10 hover:border-emerald-500/50 transition-all duration-500 group"
               >
                 <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 mb-8 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500 shadow-xl shadow-emerald-500/10">
                   {prop.icon}
@@ -654,13 +611,13 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="mt-12 p-12 bg-gradient-to-br from-sky-600 via-sky-700 to-emerald-700 rounded-[3.5rem] relative overflow-hidden group shadow-2xl"
+            className="mt-8 sm:mt-12 p-7 sm:p-12 bg-gradient-to-br from-sky-600 via-sky-700 to-emerald-700 rounded-[2.5rem] sm:rounded-[3.5rem] relative overflow-hidden group shadow-2xl"
           >
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
               <div className="max-w-xl">
-                <h3 className="text-4xl font-black mb-6 tracking-tight uppercase leading-tight">Competitive Pricing <br/>Without Compromise</h3>
-                <p className="text-sky-50 text-xl leading-relaxed mb-8 font-medium">
+                <h3 className="text-2xl sm:text-4xl font-black mb-4 sm:mb-6 tracking-tight uppercase leading-tight">Competitive Pricing <br/>Without Compromise</h3>
+                <p className="text-sky-50 text-base sm:text-xl leading-relaxed mb-6 sm:mb-8 font-medium">
                   We leverage advanced manufacturing processes to optimize costs, ensuring that professional-grade dental care remains accessible nationwide.
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -689,19 +646,19 @@ export default function App() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-6 bg-white/80 backdrop-blur-sm relative z-10">
+      <section className="py-14 sm:py-24 px-4 sm:px-6 bg-white/80 backdrop-blur-sm relative z-10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16">Trusted Testimonials</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-16">Trusted Testimonials</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
             {testimonials.map((t, idx) => (
-              <div key={idx} className="p-10 bg-slate-50 rounded-3xl relative">
+              <div key={idx} className="p-6 sm:p-10 bg-slate-50 rounded-2xl sm:rounded-3xl relative">
                 <Star className="text-yellow-400 fill-current mb-6" size={24} />
-                <p className="text-xl text-slate-700 italic mb-8">
+                <p className="text-base sm:text-xl text-slate-700 italic mb-6 sm:mb-8">
                   "{t.text}"
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-slate-200">
-                    <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                    <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
                   </div>
                   <div className="font-bold text-slate-900">{t.name}</div>
                 </div>
@@ -718,7 +675,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="pt-32 pb-24 px-6 min-h-screen bg-white relative z-10"
+            className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 min-h-screen bg-white relative z-10"
           >
             <div className="max-w-7xl mx-auto">
               <div className="mb-16">
@@ -730,8 +687,8 @@ export default function App() {
                 </button>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
                   <div>
-                    <h2 className="text-5xl font-bold text-slate-900 mb-4 tracking-tight">{activeCategory}</h2>
-                    <p className="text-xl text-slate-500 max-w-2xl leading-relaxed">
+                    <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 mb-3 sm:mb-4 tracking-tight">{activeCategory}</h2>
+                    <p className="text-base sm:text-xl text-slate-500 max-w-2xl leading-relaxed">
                       Explore our premium range of {activeCategory.toLowerCase()} solutions, clinically formulated for professional dental care.
                     </p>
                   </div>
@@ -741,7 +698,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
                 {products
                   .filter(p => p.category === activeCategory)
                   .map((product, idx) => (
@@ -757,7 +714,6 @@ export default function App() {
                           src={product.image} 
                           alt={product.name} 
                           className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-700" 
-                          referrerPolicy="no-referrer"
                         />
                         <div className="absolute top-6 left-6 px-4 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-sm border border-white/20">
                           {activeCategory}
@@ -795,18 +751,14 @@ export default function App() {
       </AnimatePresence>
 
       {/* Map and Contact Form Section */}
-      <section id="contact" className="py-32 px-6 bg-white relative z-10 border-t border-slate-100 overflow-hidden">
-        {/* Atmospheric Background Elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-50/50 rounded-full blur-[120px] -mr-32 -mt-32 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-sky-50/40 rounded-full blur-[120px] -ml-32 -mb-32 pointer-events-none" />
-
+      <section id="contact" className="py-16 sm:py-32 px-4 sm:px-6 bg-white relative z-10 border-t border-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-20">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-6xl font-black mb-6 tracking-tighter text-slate-900"
+              className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter text-slate-900"
             >
               Get in <span className="text-emerald-600">Touch</span>
             </motion.h2>
@@ -815,13 +767,13 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-slate-500 text-xl max-w-2xl mx-auto"
+              className="text-slate-500 text-base sm:text-xl max-w-2xl mx-auto"
             >
               Have questions about our clinical formulations? Our professional team is here to assist you with any inquiries.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
             
             {/* Contact Details Card */}
             <motion.div 
@@ -830,7 +782,7 @@ export default function App() {
               viewport={{ once: true }}
               className="lg:col-span-4 space-y-6"
             >
-              <div className="p-10 bg-slate-50 rounded-[2.5rem] border border-slate-100 h-full">
+              <div className="p-7 sm:p-10 bg-slate-50 rounded-[2rem] sm:rounded-[2.5rem] border border-slate-100 h-full">
                 <h3 className="text-2xl font-bold text-slate-900 mb-10 tracking-tight flex items-center gap-3">
                   <div className="w-2 h-8 bg-emerald-500 rounded-full" />
                   Contact Info
@@ -882,7 +834,7 @@ export default function App() {
               transition={{ delay: 0.1 }}
               className="lg:col-span-5"
             >
-              <div className="p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-slate-200/50">
+              <div className="p-6 sm:p-10 bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-slate-200/50">
                 <h3 className="text-2xl font-bold text-slate-900 mb-10 tracking-tight flex items-center gap-3">
                   <div className="w-2 h-8 bg-sky-500 rounded-full" />
                   Message Us
@@ -959,12 +911,12 @@ export default function App() {
       </section>
 
       {/* Footer Section */}
-      <footer className="py-20 px-6 bg-slate-900 border-t border-white/5 relative z-10 text-white">
+      <footer className="py-14 sm:py-20 px-4 sm:px-6 bg-slate-900 border-t border-white/5 relative z-10 text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 sm:gap-12 text-center md:text-left">
             <div className="max-w-sm">
               <div className="flex items-center justify-center md:justify-start gap-2 mb-8">
-                <img src={logoUrl} alt="Iesa Pharma Logo" className="h-10 w-auto invert brightness-0" referrerPolicy="no-referrer" />
+                <img src={logoUrl} alt="Iesa Pharma Logo" className="h-10 w-auto invert brightness-0" />
               </div>
               <p className="text-slate-400 mb-8">
                 Aspiring to become a leading global platform, facilitating easy access to a comprehensive range of dental solutions.
