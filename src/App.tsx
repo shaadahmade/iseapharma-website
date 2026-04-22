@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Droplet, Shield, Clock, Award, Star, MapPin, Phone, Mail, ChevronRight, X, Info, Beaker, CheckCircle2, ChevronDown, ShoppingCart, Percent, Menu } from 'lucide-react';
+import { LandingAccordionItem } from './components/ui/interactive-image-accordion';
 import { Scene } from './components/Scene';
 
 export default function App() {
@@ -452,6 +453,8 @@ export default function App() {
           </motion.div>
         </div>
       </section>
+
+      <LandingAccordionItem />
 
       {/* Promotional Banner */}
       <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 relative z-10">
