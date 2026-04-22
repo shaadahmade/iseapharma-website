@@ -454,7 +454,7 @@ export default function App() {
         </div>
       </section>
 
-      <LandingAccordionItem />
+      <LandingAccordionItem items={products} />
 
       {/* Promotional Banner */}
       <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 relative z-10">

@@ -1,61 +1,24 @@
 import React, { useState } from 'react';
 
-// --- Data for the image accordion ---
-const accordionItems = [
-  {
-    id: 1,
-    title: 'Periogum Plus',
-    imageUrl: '/images/periogum-plus.png',
-  },
-  {
-    id: 2,
-    title: 'Periogum Mouthwash',
-    imageUrl: '/images/periogum-mouthwash.jpg',
-  },
-  {
-    id: 3,
-    title: 'LignoWin Gel',
-    imageUrl: '/images/lignowin-gel.png',
-  },
-  {
-    id: 4,
-    title: 'Orogum Gum Paint',
-    imageUrl: '/images/orogum-gum-paint.png',
-  },
-  {
-    id: 5,
-    title: 'IesaGuard Gloves',
-    imageUrl: '/images/iesa-guard-gloves.jpg',
-  },
-  {
-    id: 6,
-    title: 'MorePep SP Tablets',
-    imageUrl: '/images/morepep-sp-tablets.jpeg',
-  },
-  {
-    id: 7,
-    title: 'ProTiesa Powder',
-    imageUrl: '/images/protiesa-protein-powder.png',
-  },
-  {
-    id: 8,
-    title: 'Orogum T',
-    imageUrl: '/images/orogum-t.jpg',
-  },
-];
+interface Item {
+  id: number | string;
+  name?: string;
+  title?: string;
+  image?: string;
+  imageUrl?: string;
+}
 
 interface AccordionItemProps {
-  item: {
-    id: number;
-    title: string;
-    imageUrl: string;
-  };
+  item: Item;
   isActive: boolean;
   onMouseEnter: () => void;
 }
 
 // --- Accordion Item Component ---
 const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => {
+  const title = item.title || item.name;
+  const image = item.imageUrl || item.image;
+
   return (
     <div
       className={`
@@ -67,8 +30,8 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
     >
       {/* Background Image */}
       <img
-        src={item.imageUrl}
-        alt={item.title}
+        src={image}
+        alt={title}
         className="absolute inset-0 w-full h-full object-cover"
         onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = 'https://placehold.co/400x450/2d3748/ffffff?text=Image+Error'; }}
       />
@@ -88,7 +51,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
           }
         `}
       >
-        {item.title}
+        {title}
       </span>
     </div>
   );
@@ -96,8 +59,10 @@ const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => 
 
 
 // --- Main App Component ---
-export function LandingAccordionItem() {
+export function LandingAccordionItem({ items }: { items: Item[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  if (!items || items.length === 0) return null;
 
   const handleItemHover = (index: number) => {
     setActiveIndex(index);
@@ -129,7 +94,7 @@ export function LandingAccordionItem() {
           {/* Right Side: Image Accordion */}
           <div className="w-full md:w-1/2 flex justify-center md:justify-end">
             <div className="flex flex-row items-center justify-center gap-4 overflow-x-auto p-4 scrollbar-hide">
-              {accordionItems.map((item, index) => (
+              {items.map((item, index) => (
                 <AccordionItem
                   key={item.id}
                   item={item}
