@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Droplet, Shield, Clock, Award, Star, MapPin, Phone, Mail, ChevronRight, X, Info, Beaker, CheckCircle2, ChevronDown, ShoppingCart, Percent, Menu } from 'lucide-react';
 import { LandingAccordionItem } from './components/ui/interactive-image-accordion';
-import { ProductScrollShowcase } from './demo';
 import { Scene } from './components/Scene';
 
 export default function App() {
@@ -59,7 +58,7 @@ export default function App() {
       category: "Tablets",
       subtitle: "Aceclofenac & Paracetamol Tablets I.P.",
       desc: "Dual-action pain and fever relief combining Aceclofenac and Paracetamol for dental pain management.",
-      image: "images/morpep-sp-pdf.jpeg",
+      image: "images/morpep-p-tablets.jpg",
       primaryUse: "Relief from dental pain, tooth extraction pain, and post-operative pain and fever.",
       size: "10x10 Tablets",
       benefits: ["Rapid pain relief", "Reduces fever", "Anti-inflammatory action", "Well tolerated formula"],
@@ -71,7 +70,7 @@ export default function App() {
       category: "Mouthwash",
       subtitle: "Potassium Nitrate 3% w/v & Sodium Fluoride 0.2% w/v Oral Rinse",
       desc: "Sugar-free, alcohol-free mouthwash specially formulated for sensitive teeth and gum care.",
-      image: "images/periogum-kf-pdf.jpeg",
+      image: "images/periogum-kf.jpg",
       primaryUse: "Reduces tooth sensitivity caused by hot, cold, sweet or sour stimuli. Strengthens enamel and prevents cavities.",
       size: "100 ml",
       benefits: ["Relieves tooth sensitivity", "Strengthens tooth enamel", "Prevents cavities & dental caries", "Alcohol-free & sugar-free"],
@@ -83,7 +82,7 @@ export default function App() {
       category: "Injection",
       subtitle: "Lignocaine Hydrochloride & Adrenaline Injection IP",
       desc: "Local anaesthetic injection with adrenaline for dental procedures. Schedule H prescription drug.",
-      image: "images/orobloc-2ad-pdf.jpeg",
+      image: "images/orobloc-2ad-promo.jpg",
       primaryUse: "Local anaesthesia for dental procedures including tooth extraction, oral surgeries, and invasive dental treatments.",
       size: "30 ml Multidose Vial",
       benefits: ["Fast-acting local anaesthesia", "Adrenaline 1:80000 for vasoconstriction", "Up to 10 withdrawals per vial", "Clinically proven for dental use"],
@@ -155,7 +154,7 @@ export default function App() {
       category: "Mouthwash",
       subtitle: "Benzydamine HCl 0.15% w/v Mouth Wash",
       desc: "Anti-inflammatory mouthwash that soothes pain and inflammation in the oral cavity and throat.",
-      image: "images/periogum-bz-pdf.jpeg",
+      image: "images/periogum-bz-promo.png",
       primaryUse: "Relief from oral pain and inflammation, post-dental surgery, oral mucositis, and sore throat.",
       size: "150 ml",
       benefits: ["Local analgesic & anesthetic effect", "Reduces post-surgery swelling", "Relief from oral mucositis", "Soothes sore throat & pharyngitis"],
@@ -167,7 +166,7 @@ export default function App() {
       category: "Oral Gel",
       subtitle: "Triple Action – Antiseptic, Antibacterial, Anaesthetic",
       desc: "A combination of Chlorhexidine Gluconate, Metronidazole & Lidocaine for complete oral protection.",
-      image: "images/lignowin-m-gel-pdf.jpeg",
+      image: "images/lignowin-m-gel.png",
       primaryUse: "Treatment of gingivitis, periodontitis, aphthous ulcers, oral mucositis, and denture irritation.",
       size: "10g Tube",
       benefits: ["Triple-action antiseptic formula", "Targets anaerobic bacteria", "Instant pain numbing", "Promotes gum tissue healing"],
@@ -179,7 +178,7 @@ export default function App() {
       category: "Nutritional",
       subtitle: "Lycopene, Betacarotene, Selenium, Zinc & Antioxidants",
       desc: "A complete antioxidant combination that works at the cellular level to reduce oxidative stress and boost oral healing.",
-      image: "images/osf-band-pdf.jpeg",
+      image: "images/osf-band-promo.png",
       primaryUse: "Adjunctive therapy for periodontal inflammation, post-operative healing, oral lichen planus, and leukoplakia.",
       size: "10x10 Softgel Capsules",
       benefits: ["Reduces gingival inflammation", "Accelerates wound healing post-surgery", "Antioxidant protection for gum tissue", "Supports immune defense"],
@@ -191,7 +190,7 @@ export default function App() {
       category: "Mouthwash",
       subtitle: "Povidone Iodine 2% w/v Mouth Gargle",
       desc: "Powerful antiseptic gargle that rinses away oral infections to maintain hygiene.",
-      image: "images/esadine-pdf.jpeg",
+      image: "images/esadine-promo.png",
       primaryUse: "Treatment of acute mucosal infections of mouth and pharynx, oral hygiene during and after dental surgery, gingivitis, and mouth ulcers.",
       size: "100 ml",
       benefits: ["High bactericidal rate", "Reduces MRSA & S. aureus infections", "More effective than chlorhexidine gluconate", "Prevents wound infection"],
@@ -199,11 +198,11 @@ export default function App() {
     },
     {
       id: "chlorhex-ornidazole",
-      name: "Chlorhex-O Gel",
+      name: "Clornida Gel",
       category: "Oral Gel",
       subtitle: "Chlorhexidine Gluconate 0.25% + Ornidazole 1% Gel",
       desc: "Dual-action antiseptic and antibacterial gel for trusted care in confident healing.",
-      image: "images/catalog-full-pdf.jpeg",
+      image: "images/clornida-gel-promo.png",
       primaryUse: "Treatment of gingivitis, periodontitis, oral ulcers, infections, and pre/post dental procedures.",
       size: "10g Tube",
       benefits: ["Dual antiseptic & antibacterial action", "Reduces dry socket post-extraction", "Heals mouth ulcers", "Fights bacterial & protozoal infections"],
@@ -549,7 +548,7 @@ export default function App() {
         </div>
       </section>
 
-      <ProductScrollShowcase />
+      <LandingAccordionItem items={products} />
 
       {/* Promotional Banner */}
       <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 relative z-10">
@@ -659,9 +658,9 @@ export default function App() {
                   <motion.img 
                     src={product.image} 
                     alt={product.name} 
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain p-6"
                   />
                   <div className="absolute top-5 left-5 w-12 h-12 bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center text-emerald-600 shadow-sm border border-white/50 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
                     <Droplet size={24} />

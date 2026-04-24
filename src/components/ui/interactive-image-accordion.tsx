@@ -30,10 +30,10 @@ const AccordionItem = ({ item, isActive, onMouseEnter, onClick }: AccordionItemP
   return (
     <div
       className={`
-        relative rounded-2xl overflow-hidden cursor-pointer shrink-0
+        relative rounded-2xl overflow-hidden cursor-pointer shrink-0 snap-start
         transition-all duration-700 ease-in-out bg-white border border-slate-100
         h-[420px]
-        ${isActive ? 'flex-[5]' : 'flex-[1]'}
+        ${isActive ? 'w-[300px] lg:w-[360px]' : 'w-[70px] lg:w-[80px]'}
       `}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
@@ -150,68 +150,53 @@ export function LandingAccordionItem({ items }: { items: Item[] }) {
           {/* ── Right: Accordion ── */}
           <div className="w-full md:w-[58%]">
 
-            {/* DESKTOP: Flex accordion (md and up) */}
-            <div className="hidden md:flex flex-row gap-3 h-[420px] w-full">
-              {items.map((item, index) => (
-                <AccordionItem
-                  key={item.id}
-                  item={item}
-                  isActive={index === activeIndex}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  onClick={() => setActiveIndex(index)}
-                />
-              ))}
-            </div>
-
-            {/* MOBILE: Horizontal scroll strip */}
-            <div className="flex md:hidden flex-col gap-4">
-              {/* Active item — large featured card */}
-              <div className="relative w-full rounded-2xl overflow-hidden h-[320px] sm:h-[380px] bg-white border border-slate-100 flex items-center justify-center p-8">
+            {/* GALLERY LAYOUT (Handles unlimited products beautifully) */}
+            <div className="flex flex-col gap-4 sm:gap-6">
+              
+              {/* Active / Featured Product Card */}
+              <div className="relative w-full rounded-[2rem] overflow-hidden h-[340px] sm:h-[460px] bg-white border border-slate-100 flex items-center justify-center p-8 sm:p-12 shadow-sm transition-all duration-500">
                 <img
                   src={resolveImage(items[activeIndex]?.imageUrl || items[activeIndex]?.image)}
                   alt={items[activeIndex]?.title || items[activeIndex]?.name}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain transition-transform duration-700 scale-105"
                   onError={(e) => {
                     (e.target as HTMLImageElement).onerror = null;
                     (e.target as HTMLImageElement).src =
-                      'https://placehold.co/600x320/f8fafc/94a3b8?text=No+Image';
+                      'https://placehold.co/600x400/f8fafc/94a3b8?text=No+Image';
                   }}
                 />
-                <div className="absolute bottom-5 left-5">
-                  <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 text-slate-900 text-sm font-bold shadow-sm inline-block">
+                
+                {/* Floating Title Pill */}
+                <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
+                  <span className="bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-slate-100 text-slate-900 text-sm sm:text-base font-bold shadow-md inline-block">
                     {items[activeIndex]?.title || items[activeIndex]?.name}
                   </span>
                 </div>
               </div>
 
-              {/* Thumbnail strip */}
-              <div
-                className="flex flex-row gap-3 overflow-x-auto pb-2"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-              >
+              {/* Thumbnails Grid (Wraps automatically) */}
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-start">
                 {items.map((item, index) => (
                   <button
                     key={item.id}
                     onClick={() => setActiveIndex(index)}
-                    className={`relative shrink-0 w-[80px] h-[80px] rounded-xl overflow-hidden border-2 transition-all duration-300
+                    onMouseEnter={() => setActiveIndex(index)}
+                    className={`relative shrink-0 w-[60px] h-[60px] sm:w-[76px] sm:h-[76px] rounded-xl overflow-hidden border-2 transition-all duration-300 bg-white
                       ${index === activeIndex
-                        ? 'border-emerald-500 scale-105'
-                        : 'border-transparent opacity-70 hover:opacity-100'}
+                        ? 'border-emerald-500 scale-110 shadow-md z-10'
+                        : 'border-slate-100 opacity-60 hover:opacity-100 hover:border-slate-300'}
                     `}
                   >
                     <img
                       src={resolveImage(item.imageUrl || item.image)}
                       alt={item.title || item.name}
-                      className="w-full h-full object-contain p-2 bg-white"
+                      className="w-full h-full object-contain p-1.5"
                       onError={(e) => {
                         (e.target as HTMLImageElement).onerror = null;
                         (e.target as HTMLImageElement).src =
                           'https://placehold.co/80x80/e2e8f0/94a3b8?text=?';
                       }}
                     />
-                    {index === activeIndex && (
-                      <div className="absolute inset-0 bg-emerald-500/20" />
-                    )}
                   </button>
                 ))}
               </div>
