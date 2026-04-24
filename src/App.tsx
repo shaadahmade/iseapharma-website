@@ -56,6 +56,7 @@ export default function App() {
       primaryUse: "Reduces tooth sensitivity caused by hot, cold, sweet or sour stimuli. Strengthens enamel and prevents cavities.",
       size: "100 ml",
       benefits: ["Relieves tooth sensitivity", "Strengthens tooth enamel", "Prevents cavities & dental caries", "Alcohol-free & sugar-free"],
+      composition: "Potassium Nitrate 3% w/v & Sodium Fluoride 0.2% w/v",
       buyLink: "https://www.iesapharma.com/search/all?name=PerioGum-KF"
     },
     {
@@ -68,6 +69,7 @@ export default function App() {
       primaryUse: "Relief from oral pain and inflammation, post-dental surgery, oral mucositis, and sore throat.",
       size: "150 ml",
       benefits: ["Local analgesic & anesthetic effect", "Reduces post-surgery swelling", "Relief from oral mucositis", "Soothes sore throat & pharyngitis"],
+      composition: "Benzydamine HCl 0.15% w/v",
       buyLink: "https://www.iesapharma.com/search/all?name=Periogum-BZ"
     },
     {
@@ -80,6 +82,7 @@ export default function App() {
       primaryUse: "Treatment of acute mucosal infections of mouth and pharynx, oral hygiene during and after dental surgery, gingivitis, and mouth ulcers.",
       size: "100 ml",
       benefits: ["High bactericidal rate", "Reduces MRSA & S. aureus infections", "More effective than chlorhexidine gluconate", "Prevents wound infection"],
+      composition: "Povidone Iodine 2% w/v",
       buyLink: "https://www.iesapharma.com/search/all?name=Esadine"
     },
     // --- GUM PAINT ---
@@ -93,6 +96,7 @@ export default function App() {
       primaryUse: "Direct application for swollen, spongy, and receding gums.",
       size: "15 ml",
       benefits: ["Stops gum bleeding instantly", "Tightens loose gums", "Antiseptic action", "Localized clinical treatment"],
+      composition: "Iodine, Potassium Iodide, Tannic Acid & Glycerin",
       buyLink: "https://www.iesapharma.com/search/all?name=Orogum"
     },
     {
@@ -105,6 +109,7 @@ export default function App() {
       primaryUse: "Targeted therapy for chronic gum issues and tissue maintenance.",
       size: "15 ml",
       benefits: ["Closes interdental gaps", "Strengthens periodontal bond", "Reduces tooth mobility", "Clinical precision formula"],
+      composition: "Tannic Acid, Zinc Chloride & Cetrimide",
       buyLink: "https://www.iesapharma.com/search/all?name=Orogum-T"
     },
     // --- ORAL GEL ---
@@ -118,6 +123,7 @@ export default function App() {
       primaryUse: "Soothing relief for mouth ulcers and oral lesions.",
       size: "10g Tube",
       benefits: ["Instant numbing effect", "Promotes faster healing", "Forms protective layer", "Sugar-free gel base"],
+      composition: "Lignocaine HCl 2.0% w/v + Choline Salicylate 8.7% w/v + Benzalkonium Chloride 0.01% w/v",
       buyLink: "https://www.1mg.com/search/all?name=Lignowin"
     },
     {
@@ -143,6 +149,7 @@ export default function App() {
       primaryUse: "Treatment of gingivitis, periodontitis, oral ulcers, infections, and pre/post dental procedures.",
       size: "10g Tube",
       benefits: ["Dual antiseptic & antibacterial action", "Reduces dry socket post-extraction", "Heals mouth ulcers", "Fights bacterial & protozoal infections"],
+      composition: "Chlorhexidine Gluconate 0.25% + Ornidazole 1%",
       buyLink: "https://www.iesapharma.com/search/all?name=Chlorhex-O"
     },
     // --- TABLETS ---
@@ -156,6 +163,7 @@ export default function App() {
       primaryUse: "Relief from pain, inflammation and oedema associated with dental procedures and oral surgeries.",
       size: "10x10 Tablets",
       benefits: ["Fast-acting anti-inflammatory", "Reduces post-surgical swelling", "Enzyme (Serratiopeptidase) for faster recovery", "Professional dental strength"],
+      composition: "Aceclofenac 100mg + Paracetamol 325mg + Serratiopeptidase 15mg",
       buyLink: "https://www.iesapharma.com/search/all?name=Morepep-SP"
     },
     {
@@ -168,6 +176,7 @@ export default function App() {
       primaryUse: "Relief from dental pain, tooth extraction pain, and post-operative pain and fever.",
       size: "10x10 Tablets",
       benefits: ["Rapid pain relief", "Reduces fever", "Anti-inflammatory action", "Well tolerated formula"],
+      composition: "Aceclofenac 100mg + Paracetamol 325mg",
       buyLink: "https://www.iesapharma.com/search/all?name=Morpep-P"
     },
     // --- OTHER ---
@@ -754,7 +763,7 @@ export default function App() {
                         <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-2 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
 
                         {product.composition && (
-                          <p className="text-[10px] sm:text-xs font-bold text-emerald-600 mb-3 line-clamp-1 italic">
+                          <p className="text-[10px] sm:text-xs font-bold text-emerald-600 mb-3 line-clamp-2 italic">
                             {product.composition}
                           </p>
                         )}
