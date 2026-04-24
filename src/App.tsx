@@ -751,7 +751,13 @@ export default function App() {
 
                       </div>
                       <div className="p-4 sm:p-8 flex flex-col flex-grow">
-                        <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
+                        <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-2 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
+
+                        {product.composition && (
+                          <p className="text-[10px] sm:text-xs font-bold text-emerald-600 mb-3 line-clamp-1 italic">
+                            {product.composition}
+                          </p>
+                        )}
 
                         <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2 flex-grow">{product.desc}</p>
 
@@ -923,9 +929,15 @@ export default function App() {
 
                       </div>
                       <div className="p-8 flex flex-col flex-grow">
-                        <h3 className="text-sm sm:text-2xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">
+                        <h3 className="text-sm sm:text-2xl font-bold text-slate-900 mb-1 sm:mb-2 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">
                           {product.name}
                         </h3>
+
+                        {product.composition && (
+                          <p className="text-xs font-bold text-emerald-600 mb-4 italic">
+                            {product.composition}
+                          </p>
+                        )}
 
                         <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
                           {product.desc}
