@@ -281,7 +281,7 @@ export default function App() {
               </button>
 
               {/* LEFT: Big Product Image with Magnifier */}
-              <div className="w-full md:w-[55%] bg-gradient-to-br from-slate-50 to-slate-100 relative flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-200 min-h-[350px] sm:min-h-[450px] shrink-0 overflow-hidden">
+              <div className="w-full md:w-[55%] bg-gradient-to-br from-slate-50 to-slate-100 relative flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-200 min-h-[260px] sm:min-h-[450px] shrink-0 overflow-hidden">
                 <ProductImage
                   src={selectedProduct.image}
                   alt={selectedProduct.name}
@@ -739,7 +739,7 @@ export default function App() {
                       onClick={() => setSelectedProduct(product)}
                       className="group bg-white border border-slate-200 rounded-2xl sm:rounded-[2rem] hover:border-emerald-200 transition-all hover:shadow-xl overflow-hidden flex flex-col h-full cursor-pointer"
                     >
-                      <div className="aspect-[4/5] w-full overflow-hidden bg-slate-50 relative">
+                      <div className="aspect-square w-full overflow-hidden bg-slate-50 relative">
                         <motion.img
                           src={product.image}
                           alt={product.name}
