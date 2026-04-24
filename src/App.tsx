@@ -11,30 +11,7 @@ export default function App() {
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [visitorCount, setVisitorCount] = useState<number>(1000);
 
-  // Universal Global Visitor Counter (Deterministic & Synchronized)
-  useEffect(() => {
-    const calculateGlobalCount = () => {
-      // Fixed launch date to ensure everyone starts from the same point in time
-      const launchDate = new Date('2024-04-20T00:00:00Z').getTime();
-      const now = Date.now();
-      
-      // Calculate minutes elapsed since launch
-      const elapsedMinutes = Math.floor((now - launchDate) / (1000 * 60));
-      
-      // Formula: Base 1000 + ~1.5 visitors per minute (average global traffic)
-      // This ensures EVERYONE in the world sees the SAME number at the SAME second.
-      const globalSyncCount = 1000 + Math.floor(elapsedMinutes * 1.54);
-      setVisitorCount(globalSyncCount);
-    };
-
-    calculateGlobalCount();
-    
-    // Refresh the sync every 30 seconds
-    const interval = setInterval(calculateGlobalCount, 30000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Close mobile menu on category change
   useEffect(() => {
@@ -319,23 +296,23 @@ export default function App() {
                   <p className="text-base sm:text-xl text-slate-500 mb-6 sm:mb-8">{selectedProduct.subtitle}</p>
 
                   <div className="space-y-6 mb-10">
-                      <div className="flex gap-4 p-5 bg-sky-50 rounded-2xl border border-sky-100">
-                        <Info className="text-sky-600 shrink-0" size={24} />
+                    <div className="flex gap-4 p-5 bg-sky-50 rounded-2xl border border-sky-100">
+                      <Info className="text-sky-600 shrink-0" size={24} />
+                      <div>
+                        <h4 className="font-bold text-slate-800">Primary Use</h4>
+                        <p className="text-slate-600 text-sm">{selectedProduct.primaryUse}</p>
+                      </div>
+                    </div>
+
+                    {selectedProduct.composition && (
+                      <div className="flex gap-4 p-5 bg-emerald-50 rounded-2xl border border-emerald-100">
+                        <Beaker className="text-emerald-600 shrink-0" size={24} />
                         <div>
-                          <h4 className="font-bold text-slate-800">Primary Use</h4>
-                          <p className="text-slate-600 text-sm">{selectedProduct.primaryUse}</p>
+                          <h4 className="font-bold text-slate-800">Composition</h4>
+                          <p className="text-emerald-700 text-sm font-medium">{selectedProduct.composition}</p>
                         </div>
                       </div>
-
-                      {selectedProduct.composition && (
-                        <div className="flex gap-4 p-5 bg-emerald-50 rounded-2xl border border-emerald-100">
-                          <Beaker className="text-emerald-600 shrink-0" size={24} />
-                          <div>
-                            <h4 className="font-bold text-slate-800">Composition</h4>
-                            <p className="text-emerald-700 text-sm font-medium">{selectedProduct.composition}</p>
-                          </div>
-                        </div>
-                      )}
+                    )}
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
@@ -775,7 +752,7 @@ export default function App() {
                       </div>
                       <div className="p-4 sm:p-8 flex flex-col flex-grow">
                         <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
-                        
+
                         {product.composition && (
                           <div className="mb-3 px-3 py-1.5 bg-emerald-50 rounded-lg border border-emerald-100/50">
                             <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-0.5">Composition</p>
@@ -1058,12 +1035,12 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div 
+                  <div
                     className="flex gap-6 group cursor-pointer"
                     onClick={() => window.open('https://wa.me/918299378737', '_blank')}
                   >
                     <div className="w-14 h-14 bg-[#25D366]/10 rounded-2xl flex items-center justify-center text-[#25D366] shadow-sm border border-[#25D366]/20 group-hover:bg-[#25D366] group-hover:text-white group-hover:border-[#25D366] transition-all duration-500 group-hover:scale-110">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
                     </div>
                     <div>
                       <p className="text-[10px] uppercase font-black tracking-widest text-[#25D366] mb-1">WhatsApp Us</p>
@@ -1185,21 +1162,6 @@ export default function App() {
               <p className="text-slate-400">Of Professional Service</p>
             </div>
 
-            <div className="flex flex-col gap-4 items-center md:items-start">
-              <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Visitor Counter</p>
-              <div className="flex gap-2">
-                {visitorCount.toString().padStart(6, '0').split('').map((digit, i) => (
-                  <motion.div
-                    key={`${i}-${digit}`}
-                    initial={{ y: 5, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="w-8 h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-2xl font-black text-slate-900 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.1)]"
-                  >
-                    {digit}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-black uppercase tracking-widest text-slate-600">
