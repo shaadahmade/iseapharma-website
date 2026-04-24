@@ -333,7 +333,7 @@ export default function App() {
                   </button>
 
                   <button
-                    onClick={() => window.open('https://www.meesho.com/s/p/aqflnk?utm_source=s', '_blank')}
+                    onClick={() => window.open('https://www.meesho.com/IESAPHARMACEUTICALS?ms=2', '_blank')}
                     className="w-full py-4 bg-white border-2 border-pink-100 text-slate-800 rounded-2xl font-bold text-lg hover:shadow-xl hover:border-pink-200 transition-all active:scale-95 flex items-center justify-center gap-3 group mb-3"
                   >
                     Buy on
@@ -523,7 +523,7 @@ export default function App() {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => window.open('https://www.meesho.com/s/p/aqflnk?utm_source=s', '_blank')}
+                          onClick={() => window.open('https://www.meesho.com/IESAPHARMACEUTICALS?ms=2', '_blank')}
                           className="w-full xs:w-auto px-5 sm:px-8 py-3 sm:py-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold text-sm sm:text-lg hover:border-slate-300 transition-all flex items-center justify-center gap-2 sm:gap-3 group whitespace-nowrap"
                         >
                           See us on <img src="/images/meesho-logo.png" alt="Meesho" className="h-7 sm:h-8 rounded-md object-contain" />
@@ -668,7 +668,7 @@ export default function App() {
                           </button>
 
                           <button
-                            onClick={() => window.open('https://www.meesho.com/s/p/aqflnk?utm_source=s', '_blank')}
+                            onClick={() => window.open('https://www.meesho.com/IESAPHARMACEUTICALS?ms=2', '_blank')}
                             className="group bg-white px-8 py-4 rounded-2xl font-black text-lg sm:text-xl text-slate-950 hover:bg-slate-50 transition-all flex items-center justify-center gap-3 shadow-2xl hover:shadow-pink-500/20 w-full"
                           >
                             <span className="text-slate-500 text-base font-bold">BUY ON</span>
