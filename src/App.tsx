@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Droplet, Shield, Clock, Award, Star, MapPin, Phone, Mail, ChevronRight, X, Info, Beaker, CheckCircle2, ChevronDown, ShoppingCart, Percent, Menu } from 'lucide-react';
 import { LandingAccordionItem } from './components/ui/interactive-image-accordion';
 import { Scene } from './components/Scene';
+import { ProductImage } from './components/ui/product-image';
+
 
 export default function App() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -16,6 +18,7 @@ export default function App() {
   }, [activeCategory]);
 
   const products = [
+    // --- MOUTHWASH ---
     { 
       id: "periogum-plus",
       name: "Periogum Plus", 
@@ -40,6 +43,105 @@ export default function App() {
       benefits: ["Prevents gum recession", "Gentle on sensitive tissues", "Alcohol-free formula", "Clinically proven efficacy"],
       buyLink: "https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806"
     },
+    {
+      id: "periogum-kf",
+      name: "PerioGum KF",
+      category: "Mouthwash",
+      subtitle: "Potassium Nitrate 3% w/v & Sodium Fluoride 0.2% w/v Oral Rinse",
+      desc: "Sugar-free, alcohol-free mouthwash specially formulated for sensitive teeth and gum care.",
+      image: "images/periogum-kf.jpg",
+      primaryUse: "Reduces tooth sensitivity caused by hot, cold, sweet or sour stimuli. Strengthens enamel and prevents cavities.",
+      size: "100 ml",
+      benefits: ["Relieves tooth sensitivity", "Strengthens tooth enamel", "Prevents cavities & dental caries", "Alcohol-free & sugar-free"],
+      buyLink: "https://www.iesapharma.com/search/all?name=PerioGum-KF"
+    },
+    {
+      id: "periogum-bz",
+      name: "Periogum BZ",
+      category: "Mouthwash",
+      subtitle: "Benzydamine HCl 0.15% w/v Mouth Wash",
+      desc: "Anti-inflammatory mouthwash that soothes pain and inflammation in the oral cavity and throat.",
+      image: "images/periogum-bz-promo.png",
+      primaryUse: "Relief from oral pain and inflammation, post-dental surgery, oral mucositis, and sore throat.",
+      size: "150 ml",
+      benefits: ["Local analgesic & anesthetic effect", "Reduces post-surgery swelling", "Relief from oral mucositis", "Soothes sore throat & pharyngitis"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Periogum-BZ"
+    },
+    {
+      id: "esadine",
+      name: "Esadine Mouth Gargle",
+      category: "Mouthwash",
+      subtitle: "Povidone Iodine 2% w/v Mouth Gargle",
+      desc: "Powerful antiseptic gargle that rinses away oral infections to maintain hygiene.",
+      image: "images/esadine-promo.png",
+      primaryUse: "Treatment of acute mucosal infections of mouth and pharynx, oral hygiene during and after dental surgery, gingivitis, and mouth ulcers.",
+      size: "100 ml",
+      benefits: ["High bactericidal rate", "Reduces MRSA & S. aureus infections", "More effective than chlorhexidine gluconate", "Prevents wound infection"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Esadine"
+    },
+    // --- GUM PAINT ---
+    { 
+      id: "orogum-gp",
+      name: "Orogum Gum Paint", 
+      category: "Gum Paint",
+      subtitle: "Advanced Relief for Bleeding Gums",
+      desc: "A touch of relief for bleeding gums.",
+      image: "images/orogum-gum-paint.png",
+      primaryUse: "Direct application for swollen, spongy, and receding gums.",
+      size: "15 ml",
+      benefits: ["Stops gum bleeding instantly", "Tightens loose gums", "Antiseptic action", "Localized clinical treatment"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Orogum"
+    },
+    { 
+      id: "orogum-t",
+      name: "Orogum T", 
+      category: "Gum Paint",
+      subtitle: "Therapeutic Solution for Receding Gums",
+      desc: "For bleeding, swollen, spongy, and receding/loose gums.",
+      image: "images/orogum-t.jpg",
+      primaryUse: "Targeted therapy for chronic gum issues and tissue maintenance.",
+      size: "15 ml",
+      benefits: ["Closes interdental gaps", "Strengthens periodontal bond", "Reduces tooth mobility", "Clinical precision formula"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Orogum-T"
+    },
+    // --- ORAL GEL ---
+    { 
+      id: "lignowin",
+      name: "LignoWin Mouth Ulcer Gel", 
+      category: "Oral Gel",
+      subtitle: "Fast-acting Pain Relief Gel",
+      desc: "Fast relief from pain due to mouth ulcers.",
+      image: "images/lignowin-gel.png",
+      primaryUse: "Soothing relief for mouth ulcers and oral lesions.",
+      size: "10g Tube",
+      benefits: ["Instant numbing effect", "Promotes faster healing", "Forms protective layer", "Sugar-free gel base"],
+      buyLink: "https://www.1mg.com/search/all?name=Lignowin"
+    },
+    {
+      id: "lignowin-m",
+      name: "Lignowin M Gel",
+      category: "Oral Gel",
+      subtitle: "Triple Action – Antiseptic, Antibacterial, Anaesthetic",
+      desc: "A combination of Chlorhexidine Gluconate, Metronidazole & Lidocaine for complete oral protection.",
+      image: "images/lignowin-m-gel.png",
+      primaryUse: "Treatment of gingivitis, periodontitis, aphthous ulcers, oral mucositis, and denture irritation.",
+      size: "10g Tube",
+      benefits: ["Triple-action antiseptic formula", "Targets anaerobic bacteria", "Instant pain numbing", "Promotes gum tissue healing"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Lignowin-M"
+    },
+    {
+      id: "chlorhex-ornidazole",
+      name: "Clornida Gel",
+      category: "Oral Gel",
+      subtitle: "Chlorhexidine Gluconate 0.25% + Ornidazole 1% Gel",
+      desc: "Dual-action antiseptic and antibacterial gel for trusted care in confident healing.",
+      image: "images/clornida-gel-promo.png",
+      primaryUse: "Treatment of gingivitis, periodontitis, oral ulcers, infections, and pre/post dental procedures.",
+      size: "10g Tube",
+      benefits: ["Dual antiseptic & antibacterial action", "Reduces dry socket post-extraction", "Heals mouth ulcers", "Fights bacterial & protozoal infections"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Chlorhex-O"
+    },
+    // --- TABLETS ---
     { 
       id: "morepep-sp",
       name: "Morpep-SP Tablets", 
@@ -64,22 +166,11 @@ export default function App() {
       benefits: ["Rapid pain relief", "Reduces fever", "Anti-inflammatory action", "Well tolerated formula"],
       buyLink: "https://www.iesapharma.com/search/all?name=Morpep-P"
     },
-    {
-      id: "periogum-kf",
-      name: "PerioGum KF",
-      category: "Mouthwash",
-      subtitle: "Potassium Nitrate 3% w/v & Sodium Fluoride 0.2% w/v Oral Rinse",
-      desc: "Sugar-free, alcohol-free mouthwash specially formulated for sensitive teeth and gum care.",
-      image: "images/periogum-kf.jpg",
-      primaryUse: "Reduces tooth sensitivity caused by hot, cold, sweet or sour stimuli. Strengthens enamel and prevents cavities.",
-      size: "100 ml",
-      benefits: ["Relieves tooth sensitivity", "Strengthens tooth enamel", "Prevents cavities & dental caries", "Alcohol-free & sugar-free"],
-      buyLink: "https://www.iesapharma.com/search/all?name=PerioGum-KF"
-    },
+    // --- OTHER ---
     {
       id: "orobloc-2ad",
       name: "Orobloc 2% AD",
-      category: "Injection",
+      category: "Other",
       subtitle: "Lignocaine Hydrochloride & Adrenaline Injection IP",
       desc: "Local anaesthetic injection with adrenaline for dental procedures. Schedule H prescription drug.",
       image: "images/orobloc-2ad-promo.jpg",
@@ -88,29 +179,17 @@ export default function App() {
       benefits: ["Fast-acting local anaesthesia", "Adrenaline 1:80000 for vasoconstriction", "Up to 10 withdrawals per vial", "Clinically proven for dental use"],
       buyLink: "https://www.iesapharma.com/search/all?name=Orobloc"
     },
-    { 
-      id: "lignowin",
-      name: "LignoWin Mouth Ulcer Gel", 
-      category: "Oral Gel",
-      subtitle: "Fast-acting Pain Relief Gel",
-      desc: "Fast relief from pain due to mouth ulcers.",
-      image: "images/lignowin-gel.png",
-      primaryUse: "Soothing relief for mouth ulcers and oral lesions.",
-      size: "10g Tube",
-      benefits: ["Instant numbing effect", "Promotes faster healing", "Forms protective layer", "Sugar-free gel base"],
-      buyLink: "https://www.1mg.com/search/all?name=Lignowin"
-    },
-    { 
-      id: "orogum-gp",
-      name: "Orogum Gum Paint", 
-      category: "Gum Paint",
-      subtitle: "Advanced Relief for Bleeding Gums",
-      desc: "A touch of relief for bleeding gums.",
-      image: "images/orogum-gum-paint.png",
-      primaryUse: "Direct application for swollen, spongy, and receding gums.",
-      size: "15 ml",
-      benefits: ["Stops gum bleeding instantly", "Tightens loose gums", "Antiseptic action", "Localized clinical treatment"],
-      buyLink: "https://www.iesapharma.com/search/all?name=Orogum"
+    {
+      id: "osf-band",
+      name: "OSF Band Softgel Capsules",
+      category: "Other",
+      subtitle: "Lycopene, Betacarotene, Selenium, Zinc & Antioxidants",
+      desc: "A complete antioxidant combination that works at the cellular level to reduce oxidative stress and boost oral healing.",
+      image: "images/osf-band-promo.png",
+      primaryUse: "Adjunctive therapy for periodontal inflammation, post-operative healing, oral lichen planus, and leukoplakia.",
+      size: "10x10 Softgel Capsules",
+      benefits: ["Reduces gingival inflammation", "Accelerates wound healing post-surgery", "Antioxidant protection for gum tissue", "Supports immune defense"],
+      buyLink: "https://www.iesapharma.com/search/all?name=OSF-Band"
     },
     { 
       id: "iesa-guard",
@@ -136,78 +215,6 @@ export default function App() {
       benefits: ["Rich in essential amino acids", "Antioxidant protection", "Supports immune system", "Easy to digest"],
       buyLink: "https://www.iesapharma.com/search/all?name=Protiesa"
     },
-    { 
-      id: "orogum-t",
-      name: "Orogum T", 
-      category: "Gum Paint",
-      subtitle: "Therapeutic Solution for Receding Gums",
-      desc: "For bleeding, swollen, spongy, and receding/loose gums.",
-      image: "images/orogum-t.jpg",
-      primaryUse: "Targeted therapy for chronic gum issues and tissue maintenance.",
-      size: "15 ml",
-      benefits: ["Closes interdental gaps", "Strengthens periodontal bond", "Reduces tooth mobility", "Clinical precision formula"],
-      buyLink: "https://www.iesapharma.com/search/all?name=Orogum-T"
-    },
-    {
-      id: "periogum-bz",
-      name: "Periogum BZ",
-      category: "Mouthwash",
-      subtitle: "Benzydamine HCl 0.15% w/v Mouth Wash",
-      desc: "Anti-inflammatory mouthwash that soothes pain and inflammation in the oral cavity and throat.",
-      image: "images/periogum-bz-promo.png",
-      primaryUse: "Relief from oral pain and inflammation, post-dental surgery, oral mucositis, and sore throat.",
-      size: "150 ml",
-      benefits: ["Local analgesic & anesthetic effect", "Reduces post-surgery swelling", "Relief from oral mucositis", "Soothes sore throat & pharyngitis"],
-      buyLink: "https://www.iesapharma.com/search/all?name=Periogum-BZ"
-    },
-    {
-      id: "lignowin-m",
-      name: "Lignowin M Gel",
-      category: "Oral Gel",
-      subtitle: "Triple Action – Antiseptic, Antibacterial, Anaesthetic",
-      desc: "A combination of Chlorhexidine Gluconate, Metronidazole & Lidocaine for complete oral protection.",
-      image: "images/lignowin-m-gel.png",
-      primaryUse: "Treatment of gingivitis, periodontitis, aphthous ulcers, oral mucositis, and denture irritation.",
-      size: "10g Tube",
-      benefits: ["Triple-action antiseptic formula", "Targets anaerobic bacteria", "Instant pain numbing", "Promotes gum tissue healing"],
-      buyLink: "https://www.iesapharma.com/search/all?name=Lignowin-M"
-    },
-    {
-      id: "osf-band",
-      name: "OSF Band Softgel Capsules",
-      category: "Nutritional",
-      subtitle: "Lycopene, Betacarotene, Selenium, Zinc & Antioxidants",
-      desc: "A complete antioxidant combination that works at the cellular level to reduce oxidative stress and boost oral healing.",
-      image: "images/osf-band-promo.png",
-      primaryUse: "Adjunctive therapy for periodontal inflammation, post-operative healing, oral lichen planus, and leukoplakia.",
-      size: "10x10 Softgel Capsules",
-      benefits: ["Reduces gingival inflammation", "Accelerates wound healing post-surgery", "Antioxidant protection for gum tissue", "Supports immune defense"],
-      buyLink: "https://www.iesapharma.com/search/all?name=OSF-Band"
-    },
-    {
-      id: "esadine",
-      name: "Esadine Mouth Gargle",
-      category: "Mouthwash",
-      subtitle: "Povidone Iodine 2% w/v Mouth Gargle",
-      desc: "Powerful antiseptic gargle that rinses away oral infections to maintain hygiene.",
-      image: "images/esadine-promo.png",
-      primaryUse: "Treatment of acute mucosal infections of mouth and pharynx, oral hygiene during and after dental surgery, gingivitis, and mouth ulcers.",
-      size: "100 ml",
-      benefits: ["High bactericidal rate", "Reduces MRSA & S. aureus infections", "More effective than chlorhexidine gluconate", "Prevents wound infection"],
-      buyLink: "https://www.iesapharma.com/search/all?name=Esadine"
-    },
-    {
-      id: "chlorhex-ornidazole",
-      name: "Clornida Gel",
-      category: "Oral Gel",
-      subtitle: "Chlorhexidine Gluconate 0.25% + Ornidazole 1% Gel",
-      desc: "Dual-action antiseptic and antibacterial gel for trusted care in confident healing.",
-      image: "images/clornida-gel-promo.png",
-      primaryUse: "Treatment of gingivitis, periodontitis, oral ulcers, infections, and pre/post dental procedures.",
-      size: "10g Tube",
-      benefits: ["Dual antiseptic & antibacterial action", "Reduces dry socket post-extraction", "Heals mouth ulcers", "Fights bacterial & protozoal infections"],
-      buyLink: "https://www.iesapharma.com/search/all?name=Chlorhex-O"
-    }
   ];
 
   const testimonials = [
@@ -245,87 +252,95 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-end sm:items-center sm:justify-end sm:p-6 md:p-12"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12"
             onClick={() => setSelectedProduct(null)}
           >
             {/* Modal Backdrop */}
-            <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-md" />
             
             <motion.div 
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "100%", opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="bg-white shadow-2xl w-full h-[92dvh] sm:h-full sm:max-w-lg lg:max-w-xl sm:rounded-t-none rounded-t-[2rem] sm:rounded-l-[2.5rem] overflow-y-auto relative border-t sm:border-t-0 sm:border-l border-slate-100 flex flex-col z-10"
+              className="bg-white shadow-2xl w-full max-w-5xl max-h-[95dvh] rounded-[2rem] overflow-hidden relative flex flex-col md:flex-row z-10"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Drag handle for mobile */}
-              <div className="sm:hidden flex justify-center pt-3 pb-1 shrink-0">
-                <div className="w-10 h-1 bg-slate-200 rounded-full" />
-              </div>
+              {/* Close Button */}
               <button 
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 sm:top-8 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors z-10"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-white/80 backdrop-blur-md hover:bg-slate-200 border border-slate-200 rounded-full flex items-center justify-center transition-colors z-20 shadow-sm"
               >
                 <X size={20} className="text-slate-600" />
               </button>
 
-              <div className="p-5 sm:p-10 pt-12 sm:pt-20">
-
-                <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">{selectedProduct.name}</h2>
-                <p className="text-base sm:text-xl text-slate-500 mb-6 sm:mb-8">{selectedProduct.subtitle}</p>
-
-                <div className="space-y-6 mb-10">
-                  <div className="flex gap-4 p-5 bg-sky-50 rounded-2xl border border-sky-100">
-                    <Info className="text-sky-600 shrink-0" size={24} />
-                    <div>
-                      <h4 className="font-bold text-slate-800">Primary Use</h4>
-                      <p className="text-slate-600 text-sm">{selectedProduct.primaryUse}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                      <Droplet className="text-sky-500 mb-3" size={24} />
-                      <h4 className="font-bold text-slate-800">{selectedProduct.size}</h4>
-                      <p className="text-slate-500 text-xs text-nowrap">Standard Packaging</p>
-                    </div>
-                    <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                      <Shield className="text-sky-500 mb-3" size={24} />
-                      <h4 className="font-bold text-slate-800">Quality Verified</h4>
-                      <p className="text-slate-500 text-xs text-nowrap">Patient Friendly</p>
-                    </div>
-                  </div>
-                </div>
-
-                <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2 text-lg">
-                  Key Benefits
-                </h3>
-                <ul className="space-y-4 mb-10">
-                  {selectedProduct.benefits.map((item: string, i: number) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-600">
-                      <CheckCircle2 size={18} className="text-emerald-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <button 
-                  onClick={() => window.open(selectedProduct.buyLink, '_blank')}
-                  className="w-full py-5 bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-2xl font-bold text-lg hover:shadow-xl hover:shadow-red-200 transition-all active:scale-95 flex items-center justify-center gap-3 group mb-4"
-                >
-                  <ShoppingCart size={22} className="group-hover:animate-bounce" />
-                  Buy on Tata 1mg
-                </button>
-                
-                <button className="w-full py-4 border-2 border-slate-100 text-slate-600 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
-                  Request Sample
-                </button>
+              {/* LEFT: Big Product Image with Magnifier */}
+              <div className="w-full md:w-[55%] bg-gradient-to-br from-slate-50 to-slate-100 relative flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-200 min-h-[350px] sm:min-h-[450px] shrink-0 overflow-hidden">
+                <ProductImage 
+                  src={selectedProduct.image} 
+                  alt={selectedProduct.name} 
+                />
               </div>
 
-              {/* Backdrop Blur effect for footer of the modal */}
-              <div className="mt-auto p-5 sm:p-10 bg-slate-50 border-t border-slate-100 italic text-slate-400 text-sm">
-                Manufactured by Iesa Pharma Dental Products. For dental professional use only.
+              {/* RIGHT: Product Details (Scrollable) */}
+              <div className="w-full md:w-[45%] overflow-y-auto flex flex-col custom-scrollbar bg-white" style={{ maxHeight: '100%' }}>
+                <div className="p-6 sm:p-10 lg:p-12 flex-grow">
+
+                  <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">{selectedProduct.name}</h2>
+                  <p className="text-base sm:text-xl text-slate-500 mb-6 sm:mb-8">{selectedProduct.subtitle}</p>
+
+                  <div className="space-y-6 mb-10">
+                    <div className="flex gap-4 p-5 bg-sky-50 rounded-2xl border border-sky-100">
+                      <Info className="text-sky-600 shrink-0" size={24} />
+                      <div>
+                        <h4 className="font-bold text-slate-800">Primary Use</h4>
+                        <p className="text-slate-600 text-sm">{selectedProduct.primaryUse}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                        <Droplet className="text-sky-500 mb-3" size={24} />
+                        <h4 className="font-bold text-slate-800 line-clamp-1">{selectedProduct.size}</h4>
+                        <p className="text-slate-500 text-xs text-nowrap">Standard Packaging</p>
+                      </div>
+                      <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                        <Shield className="text-sky-500 mb-3" size={24} />
+                        <h4 className="font-bold text-slate-800">Quality Verified</h4>
+                        <p className="text-slate-500 text-xs text-nowrap">Patient Friendly</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2 text-lg">
+                    Key Benefits
+                  </h3>
+                  <ul className="space-y-4 mb-10">
+                    {selectedProduct.benefits.map((item: string, i: number) => (
+                      <li key={i} className="flex items-center gap-3 text-slate-600">
+                        <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
+                        <span className="leading-tight">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button 
+                    onClick={() => window.open(selectedProduct.buyLink, '_blank')}
+                    className="w-full py-5 bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-2xl font-bold text-lg hover:shadow-xl hover:shadow-red-200 transition-all active:scale-95 flex items-center justify-center gap-3 group mb-4"
+                  >
+                    <ShoppingCart size={22} className="group-hover:animate-bounce" />
+                    Buy on Tata 1mg
+                  </button>
+                  
+                  <button className="w-full py-4 border-2 border-slate-100 text-slate-600 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                    Request Sample
+                  </button>
+                </div>
+
+                {/* Footer of Modal */}
+                <div className="mt-auto p-5 sm:p-8 bg-slate-50 border-t border-slate-100 italic text-slate-400 text-sm shrink-0">
+                  Manufactured by Iesa Pharma Dental Products. For dental professional use only.
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -374,7 +389,7 @@ export default function App() {
                     exit={{ opacity: 0, y: 10 }}
                     className="absolute top-full left-0 w-48 bg-white shadow-xl border border-slate-100 py-4 mt-0 overflow-hidden rounded-b-lg border-t-2 border-t-emerald-500"
                   >
-                    {["Mouthwash", "Gum Paint", "Oral Gel", "Other"].map((item) => (
+                    {["Mouthwash", "Gum Paint", "Oral Gel", "Tablets", "Other"].map((item) => (
                       <button 
                         key={item} 
                         onClick={() => {
@@ -424,7 +439,7 @@ export default function App() {
                 <div className="space-y-4">
                   <p className="text-xs font-black uppercase tracking-widest text-slate-400">Products</p>
                   <div className="grid grid-cols-2 gap-4">
-                    {["Mouthwash", "Gum Paint", "Oral Gel", "Other"].map((item) => (
+                    {["Mouthwash", "Gum Paint", "Oral Gel", "Tablets", "Other"].map((item) => (
                       <button 
                         key={item} 
                         onClick={() => setActiveCategory(item)}
@@ -457,7 +472,7 @@ export default function App() {
             transition={{ duration: 0.5 }}
           >
             {/* Hero Section */}
-            <section className="relative h-screen w-screen snap-start flex flex-col lg:flex-row items-end lg:items-center pt-20 overflow-hidden">
+            <section className="relative min-h-[90vh] lg:min-h-screen w-full pb-32 pt-32 lg:py-0 flex flex-col lg:flex-row items-end lg:items-center overflow-hidden">
         
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-16 items-end lg:items-center relative z-10 py-8 pb-12 lg:py-0">
           {/* On mobile: glass card wraps the text so it's readable over the 3D scene */}
@@ -531,7 +546,7 @@ export default function App() {
       </section>
 
       {/* Vision Section */}
-      <section id="about" className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 bg-white/40 backdrop-blur-2xl relative z-10 border-y border-white/20">
+      <section id="about" className="min-h-[60vh] lg:min-h-screen w-full py-16 flex items-center justify-center px-4 sm:px-6 bg-white/40 backdrop-blur-2xl relative z-10 border-y border-white/20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -544,6 +559,25 @@ export default function App() {
               "At Iesa Pharma Dental Products, our vision is to revolutionize oral healthcare by providing innovative, high-quality dental products that empower individuals to achieve and maintain optimal oral health."
             </p>
             <div className="w-20 h-1 bg-sky-500 mx-auto mt-6 sm:mt-8 rounded-full"></div>
+
+            {/* Founder Profile */}
+            <div className="mt-16 sm:mt-24 flex flex-col items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="relative group"
+              >
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div className="relative w-28 h-28 sm:w-40 sm:h-40 rounded-full border-4 border-white overflow-hidden shadow-2xl">
+                  <img src="/images/founder.jpg" alt="Founder of Iesa Pharma" className="w-full h-full object-cover" />
+                </div>
+              </motion.div>
+              <div className="mt-6 sm:mt-8 text-center">
+                <h4 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Our Founder</h4>
+                <p className="text-sm sm:text-lg text-emerald-600 font-bold uppercase tracking-[0.2em] mt-2">Iesa Pharma Visionary</p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -551,7 +585,7 @@ export default function App() {
       <LandingAccordionItem items={products} />
 
       {/* Promotional Banner */}
-      <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 relative z-10">
+      <section className="min-h-[60vh] lg:min-h-screen w-full py-16 flex items-center justify-center px-4 sm:px-6 relative z-10">
         <div className="max-w-6xl mx-auto w-full">
           <motion.div 
             initial={{ opacity: 0, y: 100 }}
@@ -580,7 +614,7 @@ export default function App() {
               </div>
 
               {/* Right Content / Visuals */}
-              <div className="relative h-full min-h-[400px] flex items-center justify-center p-8 lg:p-20 overflow-hidden">
+              <div className="relative h-full min-h-[300px] lg:min-h-[400px] flex items-center justify-center p-8 lg:p-20 overflow-hidden">
                 {/* Background Bottle Graphic */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none">
                   <img src="/images/periogum-plus.png" className="h-[120%] w-auto object-contain rotate-12 scale-110" alt="" />
@@ -623,7 +657,7 @@ export default function App() {
       </section>
 
       {/* Catalog - Product Grid */}
-      <section id="products" className="min-h-screen w-screen snap-start flex items-center py-20 px-4 sm:px-6 relative z-10 overflow-hidden">
+      <section id="products" className="min-h-[60vh] lg:min-h-screen w-full py-12 lg:py-24 flex items-center px-4 sm:px-6 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -637,7 +671,7 @@ export default function App() {
             </div>
           </motion.div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
             {products.map((product, idx) => (
               <motion.div
                 key={idx}
@@ -658,15 +692,14 @@ export default function App() {
                   <motion.img 
                     src={product.image} 
                     alt={product.name} 
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full h-full object-contain p-6"
+                    className="w-full h-full object-contain p-2 sm:p-4"
+                    whileHover={{ scale: 1.15, y: -12 }}
+                    whileTap={{ scale: 1.25, rotate: 2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   />
-                  <div className="absolute top-5 left-5 w-12 h-12 bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center text-emerald-600 shadow-sm border border-white/50 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                  <div className="absolute top-5 left-5 w-12 h-12 bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center text-emerald-600 shadow-sm border border-white/50 z-10">
                     <Droplet size={24} />
                   </div>
-                  
-
                 </div>
                 <div className="p-4 sm:p-8 flex flex-col flex-grow">
                   <h3 className="text-base sm:text-xl font-bold mb-2 sm:mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors">{product.name}</h3>
@@ -689,7 +722,7 @@ export default function App() {
       </section>
 
       {/* Why Choose Us - Minimal Layout */}
-      <section id="why-us" className="min-h-screen w-screen snap-start bg-gradient-to-br from-emerald-50/50 via-white to-sky-50/40 text-slate-900 relative z-10 flex flex-col justify-center py-24 sm:py-32">
+      <section id="why-us" className="min-h-[60vh] lg:min-h-screen w-full py-16 sm:py-24 bg-gradient-to-br from-emerald-50/50 via-white to-sky-50/40 text-slate-900 relative z-10 flex flex-col justify-center">
         <div className="max-w-7xl mx-auto w-full px-6 lg:px-12">
           
           <motion.div
@@ -754,7 +787,7 @@ export default function App() {
       </section>
 
       {/* Testimonials */}
-      <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 bg-white/80 backdrop-blur-sm relative z-10">
+      <section className="min-h-[60vh] lg:min-h-screen w-full py-16 flex items-center justify-center px-4 sm:px-6 bg-white/80 backdrop-blur-sm relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -796,7 +829,7 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 min-h-screen bg-white relative z-10"
+            className="pt-16 sm:pt-24 pb-16 sm:pb-24 px-4 sm:px-6 min-h-screen bg-white relative z-10"
           >
             <div className="max-w-7xl mx-auto">
               <div className="mb-16">
@@ -872,7 +905,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Map and Contact Form Section */}
-      <section id="contact" className="min-h-screen w-screen snap-start flex items-center py-20 px-4 sm:px-6 bg-white relative z-10 border-t border-slate-100 overflow-hidden">
+      <section id="contact" className="min-h-[60vh] lg:min-h-screen w-full py-12 lg:py-24 flex items-center px-4 sm:px-6 bg-white relative z-10 border-t border-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}

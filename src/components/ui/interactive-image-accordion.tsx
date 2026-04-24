@@ -154,7 +154,7 @@ export function LandingAccordionItem({ items }: { items: Item[] }) {
             <div className="flex flex-col gap-4 sm:gap-6">
               
               {/* Active / Featured Product Card */}
-              <div className="relative w-full rounded-[2rem] overflow-hidden h-[340px] sm:h-[460px] bg-white border border-slate-100 flex items-center justify-center p-8 sm:p-12 shadow-sm transition-all duration-500">
+              <div className="relative w-full rounded-[2rem] overflow-hidden h-[260px] sm:h-[460px] bg-white border border-slate-100 flex items-center justify-center p-6 sm:p-12 shadow-sm transition-all duration-500">
                 <img
                   src={resolveImage(items[activeIndex]?.imageUrl || items[activeIndex]?.image)}
                   alt={items[activeIndex]?.title || items[activeIndex]?.name}
