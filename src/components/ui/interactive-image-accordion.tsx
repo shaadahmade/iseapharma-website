@@ -152,7 +152,7 @@ export function LandingAccordionItem({ items }: { items: Item[] }) {
 
             {/* GALLERY LAYOUT (Handles unlimited products beautifully) */}
             <div className="flex flex-col gap-4 sm:gap-6">
-              
+
               {/* Active / Featured Product Card */}
               <div className="relative w-full rounded-[2rem] overflow-hidden h-[260px] sm:h-[460px] bg-white border border-slate-100 flex items-center justify-center p-6 sm:p-12 shadow-sm transition-all duration-500">
                 <img
@@ -165,13 +165,8 @@ export function LandingAccordionItem({ items }: { items: Item[] }) {
                       'https://placehold.co/600x400/f8fafc/94a3b8?text=No+Image';
                   }}
                 />
-                
-                {/* Floating Title Pill */}
-                <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
-                  <span className="bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-slate-100 text-slate-900 text-sm sm:text-base font-bold shadow-md inline-block">
-                    {items[activeIndex]?.title || items[activeIndex]?.name}
-                  </span>
-                </div>
+
+
               </div>
 
               {/* Thumbnails Grid (Wraps automatically) */}

@@ -18,7 +18,12 @@ export function Scene({ onBottleClick }: { onBottleClick?: () => void }) {
       style={{ opacity, pointerEvents: pointerEvents as any, display }}
       className="fixed inset-0 z-[-1]"
     >
-      <Canvas shadows camera={{ position: [0, 0, 4], fov: 45 }}>
+      <Canvas 
+        shadows 
+        dpr={[1, 2]} 
+        performance={{ min: 0.5 }}
+        camera={{ position: [0, 0, 4], fov: 45 }}
+      >
         <Suspense fallback={null}>
           <ambientLight intensity={0.8} />
           
@@ -44,6 +49,8 @@ export function Scene({ onBottleClick }: { onBottleClick?: () => void }) {
             rotation={[0, 0, 0]}
             polar={[-Math.PI / 4, Math.PI / 4]}
             azimuth={[-Math.PI / 2, Math.PI / 2]}
+            config={{ mass: 2, tension: 500 }}
+            snap={{ mass: 4, tension: 400 }}
           >
             <DentalProductModel scrollY={scrollYProgress} onClick={onBottleClick} />
           </PresentationControls>
