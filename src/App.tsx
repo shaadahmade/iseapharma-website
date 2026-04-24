@@ -11,6 +11,32 @@ export default function App() {
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [visitorCount, setVisitorCount] = useState<number>(1000);
+
+  // Visitor Counter Logic
+  useEffect(() => {
+    const saved = localStorage.getItem('iesa_visitor_count');
+    const startCount = saved ? parseInt(saved) : 1000;
+    // For "realtime" feel, we increment on each visit
+    const newCount = startCount + 1;
+    setVisitorCount(newCount);
+    localStorage.setItem('iesa_visitor_count', newCount.toString());
+
+    // Simulate occasional live increments while on page
+    const interval = setInterval(() => {
+      setVisitorCount(prev => {
+        const shouldIncrement = Math.random() > 0.85;
+        if (shouldIncrement) {
+          const next = prev + 1;
+          localStorage.setItem('iesa_visitor_count', next.toString());
+          return next;
+        }
+        return prev;
+      });
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Close mobile menu on category change
   useEffect(() => {
@@ -1114,6 +1140,22 @@ export default function App() {
               <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Experience</p>
               <p className="text-4xl font-black text-white">10+ Years</p>
               <p className="text-slate-400">Of Professional Service</p>
+            </div>
+
+            <div className="flex flex-col gap-4 items-center md:items-start">
+              <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Visitor Counter</p>
+              <div className="flex gap-2">
+                {visitorCount.toString().padStart(6, '0').split('').map((digit, i) => (
+                  <motion.div
+                    key={`${i}-${digit}`}
+                    initial={{ y: 5, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="w-8 h-12 bg-black border border-white/10 rounded-xl flex items-center justify-center text-2xl font-black text-white shadow-[inset_0_2px_15px_rgba(255,255,255,0.05)]"
+                  >
+                    {digit}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
 
