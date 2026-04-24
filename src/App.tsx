@@ -1142,19 +1142,41 @@ export default function App() {
               <p className="text-slate-400">Of Professional Service</p>
             </div>
 
-            <div className="flex flex-col gap-4 items-center md:items-start">
-              <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Visitor Counter</p>
-              <div className="flex gap-2">
+            <div className="flex flex-col gap-4 items-center md:items-start p-6 sm:p-8 bg-white/5 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden group min-w-[280px]">
+              {/* Glowing Background effect */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-emerald-500/20 transition-all duration-700" />
+              
+              <div className="flex items-center gap-3 mb-1">
+                <div className="relative">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping absolute inset-0" />
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full relative shadow-[0_0_10px_#10b981]" />
+                </div>
+                <p className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em]">Live System Activity</p>
+              </div>
+
+              <div className="flex gap-1.5 sm:gap-2">
                 {visitorCount.toString().padStart(6, '0').split('').map((digit, i) => (
                   <motion.div
                     key={`${i}-${digit}`}
-                    initial={{ y: 5, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="w-8 h-12 bg-black border border-white/10 rounded-xl flex items-center justify-center text-2xl font-black text-white shadow-[inset_0_2px_15px_rgba(255,255,255,0.05)]"
+                    initial={{ y: 15, opacity: 0, rotateX: -90 }}
+                    animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25, delay: i * 0.05 }}
+                    className="w-9 sm:w-11 h-12 sm:h-16 bg-slate-950 border border-white/10 rounded-xl flex items-center justify-center text-2xl sm:text-4xl font-mono font-black text-white shadow-[inset_0_2px_20px_rgba(255,255,255,0.05),0_10px_25px_rgba(0,0,0,0.5)]"
                   >
-                    {digit}
+                    <span className="bg-gradient-to-b from-white via-white to-slate-500 bg-clip-text text-transparent">
+                      {digit}
+                    </span>
+                    {/* Horizontal Line across digits */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-full h-[1px] bg-white/5" />
+                    </div>
                   </motion.div>
                 ))}
+              </div>
+              
+              <div className="flex items-center gap-4 mt-2">
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Global Verified Visitors</p>
+                <div className="h-px flex-grow bg-white/5 min-w-[20px]" />
               </div>
             </div>
           </div>
