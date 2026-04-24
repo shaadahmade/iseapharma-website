@@ -352,7 +352,7 @@ export default function App() {
                   </div>
 
                   <div className="space-y-2 sm:space-y-3">
-                    {selectedProduct.name.toLowerCase().includes('periogum') && (
+                    {selectedProduct.id === 'periogum-plus' && (
                       <>
                         <button
                           onClick={() => window.open(selectedProduct.buyLink, '_blank')}
@@ -380,7 +380,7 @@ export default function App() {
                       Order on WhatsApp
                     </button>
  
-                    {selectedProduct.name.toLowerCase().includes('periogum') && (
+                    {selectedProduct.id === 'periogum-plus' && (
                       <button className="w-full py-3 sm:py-4 border-2 border-slate-100 text-slate-600 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
                         Request Sample
                       </button>
