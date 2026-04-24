@@ -753,13 +753,6 @@ export default function App() {
                       <div className="p-4 sm:p-8 flex flex-col flex-grow">
                         <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
 
-                        {product.composition && (
-                          <div className="mb-3 px-3 py-1.5 bg-emerald-50 rounded-lg border border-emerald-100/50">
-                            <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-0.5">Composition</p>
-                            <p className="text-[10px] sm:text-xs text-emerald-800 font-bold line-clamp-1">{product.composition}</p>
-                          </div>
-                        )}
-
                         <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2 flex-grow">{product.desc}</p>
 
                         <div className="flex items-center justify-between pt-4 border-t border-slate-50">
@@ -933,13 +926,6 @@ export default function App() {
                         <h3 className="text-sm sm:text-2xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">
                           {product.name}
                         </h3>
-
-                        {product.composition && (
-                          <div className="mb-4 px-4 py-2 bg-emerald-50 rounded-xl border border-emerald-100/50">
-                            <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-1">Composition</p>
-                            <p className="text-xs text-emerald-800 font-bold leading-tight">{product.composition}</p>
-                          </div>
-                        )}
 
                         <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
                           {product.desc}
