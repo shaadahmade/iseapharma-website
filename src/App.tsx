@@ -61,6 +61,7 @@ export default function App() {
       primaryUse: "Effective against gingivitis, plaque formation, and maintenance of oral hygiene.",
       size: "150 ml",
       benefits: ["Kills 99.9% of oral bacteria", "Reduces gum inflammation", "Prevents bleeding symptoms", "Long-lasting fresh breath"],
+      composition: "Chlorhexidine 0.2%, Sodium Fluoride 0.05%, Zinc Chloride 0.09%",
       buyLink: "https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806"
     },
     {
@@ -73,6 +74,7 @@ export default function App() {
       primaryUse: "Broad spectrum anti-microbial protection for clinical dental health.",
       size: "100 ml",
       benefits: ["Prevents gum recession", "Gentle on sensitive tissues", "Alcohol-free formula", "Clinically proven efficacy"],
+      composition: "Chlorhexidine gluconate 0.2%",
       buyLink: "https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806"
     },
     {
@@ -159,6 +161,7 @@ export default function App() {
       primaryUse: "Treatment of gingivitis, periodontitis, aphthous ulcers, oral mucositis, and denture irritation.",
       size: "10g Tube",
       benefits: ["Triple-action antiseptic formula", "Targets anaerobic bacteria", "Instant pain numbing", "Promotes gum tissue healing"],
+      composition: "Lignocaine 1% + Chlorhexidine Gluconate 1% + Metronidazole 1%",
       buyLink: "https://www.iesapharma.com/search/all?name=Lignowin-M"
     },
     {
@@ -209,6 +212,7 @@ export default function App() {
       primaryUse: "Local anaesthesia for dental procedures including tooth extraction, oral surgeries, and invasive dental treatments.",
       size: "30 ml Multidose Vial",
       benefits: ["Fast-acting local anaesthesia", "Adrenaline 1:80000 for vasoconstriction", "Up to 10 withdrawals per vial", "Clinically proven for dental use"],
+      composition: "Lignocaine Hydrochloride IP 24.64mg + Adrenaline Bitartrate IP 0.0125mg + Methyl paraben IP 1.0mg",
       buyLink: "https://www.iesapharma.com/search/all?name=Orobloc"
     },
     {
@@ -221,6 +225,7 @@ export default function App() {
       primaryUse: "Adjunctive therapy for periodontal inflammation, post-operative healing, oral lichen planus, and leukoplakia.",
       size: "10x10 Softgel Capsules",
       benefits: ["Reduces gingival inflammation", "Accelerates wound healing post-surgery", "Antioxidant protection for gum tissue", "Supports immune defense"],
+      composition: "Lycopene (5mg) + Beta Carotene (10mg) + Selenium (75mcg) + Zinc (27.5mg) + Copper (1mg) + Alpha Lipoic Acid (50mg) + Vitamin E (10IU)",
       buyLink: "https://www.iesapharma.com/search/all?name=OSF-Band"
     },
     {
@@ -322,13 +327,23 @@ export default function App() {
                   <p className="text-base sm:text-xl text-slate-500 mb-6 sm:mb-8">{selectedProduct.subtitle}</p>
 
                   <div className="space-y-6 mb-10">
-                    <div className="flex gap-4 p-5 bg-sky-50 rounded-2xl border border-sky-100">
-                      <Info className="text-sky-600 shrink-0" size={24} />
-                      <div>
-                        <h4 className="font-bold text-slate-800">Primary Use</h4>
-                        <p className="text-slate-600 text-sm">{selectedProduct.primaryUse}</p>
+                      <div className="flex gap-4 p-5 bg-sky-50 rounded-2xl border border-sky-100">
+                        <Info className="text-sky-600 shrink-0" size={24} />
+                        <div>
+                          <h4 className="font-bold text-slate-800">Primary Use</h4>
+                          <p className="text-slate-600 text-sm">{selectedProduct.primaryUse}</p>
+                        </div>
                       </div>
-                    </div>
+
+                      {selectedProduct.composition && (
+                        <div className="flex gap-4 p-5 bg-emerald-50 rounded-2xl border border-emerald-100">
+                          <Beaker className="text-emerald-600 shrink-0" size={24} />
+                          <div>
+                            <h4 className="font-bold text-slate-800">Composition</h4>
+                            <p className="text-emerald-700 text-sm font-medium">{selectedProduct.composition}</p>
+                          </div>
+                        </div>
+                      )}
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
@@ -768,7 +783,15 @@ export default function App() {
                       </div>
                       <div className="p-4 sm:p-8 flex flex-col flex-grow">
                         <h3 className="text-sm sm:text-xl font-bold mb-1 sm:mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
-                        <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-3 flex-grow">{product.desc}</p>
+                        
+                        {product.composition && (
+                          <div className="mb-3 px-3 py-1.5 bg-emerald-50 rounded-lg border border-emerald-100/50">
+                            <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-0.5">Composition</p>
+                            <p className="text-[10px] sm:text-xs text-emerald-800 font-bold line-clamp-1">{product.composition}</p>
+                          </div>
+                        )}
+
+                        <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2 flex-grow">{product.desc}</p>
 
                         <div className="flex items-center justify-between pt-4 border-t border-slate-50">
                           <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Medical Grade</span>
@@ -941,6 +964,14 @@ export default function App() {
                         <h3 className="text-sm sm:text-2xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">
                           {product.name}
                         </h3>
+
+                        {product.composition && (
+                          <div className="mb-4 px-4 py-2 bg-emerald-50 rounded-xl border border-emerald-100/50">
+                            <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-1">Composition</p>
+                            <p className="text-xs text-emerald-800 font-bold leading-tight">{product.composition}</p>
+                          </div>
+                        )}
+
                         <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
                           {product.desc}
                         </p>
