@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Droplet, Shield, Clock, Award, Star, MapPin, Phone, Mail, ChevronRight, X, Info, Beaker, CheckCircle2, ChevronDown, ShoppingCart, Percent, Menu } from 'lucide-react';
 import { LandingAccordionItem } from './components/ui/interactive-image-accordion';
+import { ProductScrollShowcase } from './demo';
 import { Scene } from './components/Scene';
 
 export default function App() {
@@ -42,15 +43,51 @@ export default function App() {
     },
     { 
       id: "morepep-sp",
-      name: "Morepep-SP Tablets", 
-      category: "Other",
-      subtitle: "Anti-inflammatory & Analgesic Relief",
-      desc: "Listed under general products",
+      name: "Morpep-SP Tablets", 
+      category: "Tablets",
+      subtitle: "Aceclofenac, Paracetamol & Serratiopeptidase Tablets",
+      desc: "Triple-action anti-inflammatory, analgesic, and enzyme combination for post-dental surgical pain and swelling.",
       image: "images/morepep-sp-tablets.jpeg",
-      primaryUse: "Relief from inflammation and pain associated with dental procedures.",
-      size: "10 Tablets",
-      benefits: ["Fast-acting formula", "Reduces swelling", "Post-surgical recovery support", "Professional strength"],
+      primaryUse: "Relief from pain, inflammation and oedema associated with dental procedures and oral surgeries.",
+      size: "10x10 Tablets",
+      benefits: ["Fast-acting anti-inflammatory", "Reduces post-surgical swelling", "Enzyme (Serratiopeptidase) for faster recovery", "Professional dental strength"],
       buyLink: "https://www.iesapharma.com/search/all?name=Morepep-SP"
+    },
+    {
+      id: "morpep-p",
+      name: "Morpep-P Tablets",
+      category: "Tablets",
+      subtitle: "Aceclofenac & Paracetamol Tablets I.P.",
+      desc: "Dual-action pain and fever relief combining Aceclofenac and Paracetamol for dental pain management.",
+      image: "images/morpep-sp-pdf.jpeg",
+      primaryUse: "Relief from dental pain, tooth extraction pain, and post-operative pain and fever.",
+      size: "10x10 Tablets",
+      benefits: ["Rapid pain relief", "Reduces fever", "Anti-inflammatory action", "Well tolerated formula"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Morpep-P"
+    },
+    {
+      id: "periogum-kf",
+      name: "PerioGum KF",
+      category: "Mouthwash",
+      subtitle: "Potassium Nitrate 3% w/v & Sodium Fluoride 0.2% w/v Oral Rinse",
+      desc: "Sugar-free, alcohol-free mouthwash specially formulated for sensitive teeth and gum care.",
+      image: "images/periogum-kf-pdf.jpeg",
+      primaryUse: "Reduces tooth sensitivity caused by hot, cold, sweet or sour stimuli. Strengthens enamel and prevents cavities.",
+      size: "100 ml",
+      benefits: ["Relieves tooth sensitivity", "Strengthens tooth enamel", "Prevents cavities & dental caries", "Alcohol-free & sugar-free"],
+      buyLink: "https://www.iesapharma.com/search/all?name=PerioGum-KF"
+    },
+    {
+      id: "orobloc-2ad",
+      name: "Orobloc 2% AD",
+      category: "Injection",
+      subtitle: "Lignocaine Hydrochloride & Adrenaline Injection IP",
+      desc: "Local anaesthetic injection with adrenaline for dental procedures. Schedule H prescription drug.",
+      image: "images/orobloc-2ad-pdf.jpeg",
+      primaryUse: "Local anaesthesia for dental procedures including tooth extraction, oral surgeries, and invasive dental treatments.",
+      size: "30 ml Multidose Vial",
+      benefits: ["Fast-acting local anaesthesia", "Adrenaline 1:80000 for vasoconstriction", "Up to 10 withdrawals per vial", "Clinically proven for dental use"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Orobloc"
     },
     { 
       id: "lignowin",
@@ -111,6 +148,66 @@ export default function App() {
       size: "15 ml",
       benefits: ["Closes interdental gaps", "Strengthens periodontal bond", "Reduces tooth mobility", "Clinical precision formula"],
       buyLink: "https://www.iesapharma.com/search/all?name=Orogum-T"
+    },
+    {
+      id: "periogum-bz",
+      name: "Periogum BZ",
+      category: "Mouthwash",
+      subtitle: "Benzydamine HCl 0.15% w/v Mouth Wash",
+      desc: "Anti-inflammatory mouthwash that soothes pain and inflammation in the oral cavity and throat.",
+      image: "images/periogum-bz-pdf.jpeg",
+      primaryUse: "Relief from oral pain and inflammation, post-dental surgery, oral mucositis, and sore throat.",
+      size: "150 ml",
+      benefits: ["Local analgesic & anesthetic effect", "Reduces post-surgery swelling", "Relief from oral mucositis", "Soothes sore throat & pharyngitis"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Periogum-BZ"
+    },
+    {
+      id: "lignowin-m",
+      name: "Lignowin M Gel",
+      category: "Oral Gel",
+      subtitle: "Triple Action – Antiseptic, Antibacterial, Anaesthetic",
+      desc: "A combination of Chlorhexidine Gluconate, Metronidazole & Lidocaine for complete oral protection.",
+      image: "images/lignowin-m-gel-pdf.jpeg",
+      primaryUse: "Treatment of gingivitis, periodontitis, aphthous ulcers, oral mucositis, and denture irritation.",
+      size: "10g Tube",
+      benefits: ["Triple-action antiseptic formula", "Targets anaerobic bacteria", "Instant pain numbing", "Promotes gum tissue healing"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Lignowin-M"
+    },
+    {
+      id: "osf-band",
+      name: "OSF Band Softgel Capsules",
+      category: "Nutritional",
+      subtitle: "Lycopene, Betacarotene, Selenium, Zinc & Antioxidants",
+      desc: "A complete antioxidant combination that works at the cellular level to reduce oxidative stress and boost oral healing.",
+      image: "images/osf-band-pdf.jpeg",
+      primaryUse: "Adjunctive therapy for periodontal inflammation, post-operative healing, oral lichen planus, and leukoplakia.",
+      size: "10x10 Softgel Capsules",
+      benefits: ["Reduces gingival inflammation", "Accelerates wound healing post-surgery", "Antioxidant protection for gum tissue", "Supports immune defense"],
+      buyLink: "https://www.iesapharma.com/search/all?name=OSF-Band"
+    },
+    {
+      id: "esadine",
+      name: "Esadine Mouth Gargle",
+      category: "Mouthwash",
+      subtitle: "Povidone Iodine 2% w/v Mouth Gargle",
+      desc: "Powerful antiseptic gargle that rinses away oral infections to maintain hygiene.",
+      image: "images/esadine-pdf.jpeg",
+      primaryUse: "Treatment of acute mucosal infections of mouth and pharynx, oral hygiene during and after dental surgery, gingivitis, and mouth ulcers.",
+      size: "100 ml",
+      benefits: ["High bactericidal rate", "Reduces MRSA & S. aureus infections", "More effective than chlorhexidine gluconate", "Prevents wound infection"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Esadine"
+    },
+    {
+      id: "chlorhex-ornidazole",
+      name: "Chlorhex-O Gel",
+      category: "Oral Gel",
+      subtitle: "Chlorhexidine Gluconate 0.25% + Ornidazole 1% Gel",
+      desc: "Dual-action antiseptic and antibacterial gel for trusted care in confident healing.",
+      image: "images/catalog-full-pdf.jpeg",
+      primaryUse: "Treatment of gingivitis, periodontitis, oral ulcers, infections, and pre/post dental procedures.",
+      size: "10g Tube",
+      benefits: ["Dual antiseptic & antibacterial action", "Reduces dry socket post-extraction", "Heals mouth ulcers", "Fights bacterial & protozoal infections"],
+      buyLink: "https://www.iesapharma.com/search/all?name=Chlorhex-O"
     }
   ];
 
@@ -130,10 +227,10 @@ export default function App() {
   const logoUrl = "/images/iesa-pharma-logo.jpg";
 
   const valueProps = [
-    { icon: <Shield size={24} />, title: "Fully Licensed", text: "Bonded, And Insured" },
-    { icon: <Award size={24} />, title: "Best Products", text: "Latest advancements in dental technology." },
-    { icon: <Star size={24} />, title: "Quality Assurance", text: "Highest standards from raw materials." },
-    { icon: <Clock size={24} />, title: "Quickest Response", text: "Prioritizing customer satisfaction." },
+    { num: "01", title: "Fully Licensed", text: "Bonded and insured for every clinical partnership across the country." },
+    { num: "02", title: "Best Products", text: "Latest advancements in dental technology, rigorously validated by experts." },
+    { num: "03", title: "Quality Assurance", text: "Highest standards applied from raw materials to final packaging." },
+    { num: "04", title: "Quickest Response", text: "Dedicated support that prioritizes your satisfaction at every step." },
   ];
 
   return (
@@ -175,9 +272,7 @@ export default function App() {
               </button>
 
               <div className="p-5 sm:p-10 pt-12 sm:pt-20">
-                <div className="inline-flex items-center gap-2 px-4 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-                  <Beaker size={14} /> Clinical Formulation
-                </div>
+
                 <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">{selectedProduct.name}</h2>
                 <p className="text-base sm:text-xl text-slate-500 mb-6 sm:mb-8">{selectedProduct.subtitle}</p>
 
@@ -454,7 +549,7 @@ export default function App() {
         </div>
       </section>
 
-      <LandingAccordionItem items={products} />
+      <ProductScrollShowcase />
 
       {/* Promotional Banner */}
       <section className="h-screen w-screen snap-start flex items-center justify-center px-4 sm:px-6 relative z-10">
@@ -472,9 +567,7 @@ export default function App() {
             <div className="relative grid lg:grid-cols-2 items-center">
               {/* Left Content */}
               <div className="p-8 sm:p-12 md:p-16 lg:p-20 space-y-6 sm:space-y-8 relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-black uppercase tracking-widest border border-emerald-500/30">
-                  <Percent size={14} /> Flash Sale: 50% OFF
-                </div>
+
                 
                 <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[0.85] uppercase tracking-tighter">
                   SAY GOODBYE <br/>
@@ -574,10 +667,7 @@ export default function App() {
                     <Droplet size={24} />
                   </div>
                   
-                  <div className="absolute bottom-5 left-5 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[9px] font-black uppercase tracking-tighter text-slate-900 shadow-sm border border-white/20">
-                    {product.category}
-                  </div>
-                  
+
                 </div>
                 <div className="p-4 sm:p-8 flex flex-col flex-grow">
                   <h3 className="text-base sm:text-xl font-bold mb-2 sm:mb-3 text-slate-900 group-hover:text-emerald-600 transition-colors">{product.name}</h3>
@@ -599,80 +689,68 @@ export default function App() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section id="why-us" className="min-h-screen w-screen snap-start flex items-center py-20 px-4 sm:px-6 bg-slate-950 text-white relative z-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.5 }}
+      {/* Why Choose Us - Minimal Layout */}
+      <section id="why-us" className="min-h-screen w-screen snap-start bg-gradient-to-br from-emerald-50/50 via-white to-sky-50/40 text-slate-900 relative z-10 flex flex-col justify-center py-24 sm:py-32">
+        <div className="max-w-7xl mx-auto w-full px-6 lg:px-12">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            className="mb-20 sm:mb-32 max-w-3xl"
           >
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter">
-              Why Choose <span className="text-emerald-400">Iesa Pharma</span>?
+            <p className="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-6">Our Strengths</p>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-10 text-slate-900">
+              Clinical precision, made accessible without compromise.
             </h2>
-            <p className="text-slate-400 text-base sm:text-xl max-w-2xl mx-auto">
-              Building the future of oral healthcare through innovation, precision, and unwavering quality standards.
-            </p>
+            <div className="h-px w-24 bg-slate-200"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-16 mb-24 sm:mb-32">
             {valueProps.map((prop, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="p-6 sm:p-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] sm:rounded-[2.5rem] hover:bg-white/10 hover:border-emerald-500/50 transition-all duration-500 group"
+                transition={{ delay: idx * 0.1, duration: 0.8 }}
+                className="flex flex-col"
               >
-                <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 mb-8 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500 shadow-xl shadow-emerald-500/10">
-                  {prop.icon}
-                </div>
-                <h4 className="text-2xl font-bold mb-3 tracking-tight">{prop.title}</h4>
-                <p className="text-slate-400 leading-relaxed text-sm">{prop.text}</p>
+                <h3 className="text-xl font-medium mb-4 text-slate-900">{prop.title}</h3>
+                <p className="text-slate-500 text-base leading-relaxed">{prop.text}</p>
               </motion.div>
             ))}
           </div>
 
+          {/* Metrics & Trust row - super minimal */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-8 sm:mt-12 p-7 sm:p-12 bg-gradient-to-br from-sky-600 via-sky-700 to-emerald-700 rounded-[2.5rem] sm:rounded-[3.5rem] relative overflow-hidden group shadow-2xl"
+            transition={{ delay: 0.4, duration: 1 }}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-12 pt-16 border-t border-slate-100"
           >
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
-              <div className="max-w-xl">
-                <h3 className="text-2xl sm:text-4xl font-black mb-4 sm:mb-6 tracking-tight uppercase leading-tight">Competitive Pricing <br/>Without Compromise</h3>
-                <p className="text-sky-50 text-base sm:text-xl leading-relaxed mb-6 sm:mb-8 font-medium">
-                  We leverage advanced manufacturing processes to optimize costs, ensuring that professional-grade dental care remains accessible nationwide.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  {['Licensed & Bonded', 'ISO Certified', 'GMP Standard'].map((tag, idx) => (
-                    <div key={idx} className="px-5 py-2 bg-white/15 backdrop-blur-md rounded-full border border-white/20 text-[10px] font-black tracking-widest uppercase">
-                      {tag}
-                    </div>
-                  ))}
-                </div>
+            <div className="flex gap-12 sm:gap-20">
+              <div>
+                <div className="text-4xl font-medium text-slate-900 mb-2">500+</div>
+                <div className="text-xs text-slate-400 font-bold uppercase tracking-widest">Surgeons</div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full lg:w-auto">
-                {[
-                  { title: "Pure Materials", desc: "Sourced globally for extreme clinical purity." },
-                  { title: "Fast Logistics", desc: "Reliable distribution network across India." }
-                ].map((item, idx) => (
-                  <div key={idx} className="p-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] min-w-[240px]">
-                    <div className="text-emerald-300 font-black mb-4 uppercase tracking-widest text-[10px]">Standard 0{idx + 1}</div>
-                    <h5 className="font-bold text-xl mb-2">{item.title}</h5>
-                    <p className="text-sky-50 opacity-70 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
+              <div>
+                <div className="text-4xl font-medium text-slate-900 mb-2">100%</div>
+                <div className="text-xs text-slate-400 font-bold uppercase tracking-widest">GMP Certified</div>
               </div>
             </div>
+
+            <div className="flex flex-wrap gap-4 sm:gap-6 text-sm font-medium text-slate-400">
+              <span>Licensed & Bonded</span>
+              <span className="hidden sm:inline text-slate-300">&middot;</span>
+              <span>ISO Certified</span>
+              <span className="hidden sm:inline text-slate-300">&middot;</span>
+              <span>Pan-India Delivery</span>
+            </div>
           </motion.div>
+
         </div>
       </section>
 

@@ -12,102 +12,211 @@ interface AccordionItemProps {
   item: Item;
   isActive: boolean;
   onMouseEnter: () => void;
+  onClick: () => void;
 }
 
-// --- Accordion Item Component ---
-const AccordionItem = ({ item, isActive, onMouseEnter }: AccordionItemProps) => {
+// Normalise image path so both "images/foo.png" and "/images/foo.png" work.
+function resolveImage(raw?: string): string {
+  if (!raw) return '';
+  if (raw.startsWith('http') || raw.startsWith('/')) return raw;
+  return '/' + raw;
+}
+
+// --- Desktop Accordion Item ---
+const AccordionItem = ({ item, isActive, onMouseEnter, onClick }: AccordionItemProps) => {
   const title = item.title || item.name;
-  const image = item.imageUrl || item.image;
+  const image = resolveImage(item.imageUrl || item.image);
 
   return (
     <div
       className={`
-        relative h-[450px] rounded-2xl overflow-hidden cursor-pointer
-        transition-all duration-700 ease-in-out shrink-0 bg-slate-100
-        ${isActive ? 'w-[400px]' : 'w-[60px]'}
+        relative rounded-2xl overflow-hidden cursor-pointer shrink-0
+        transition-all duration-700 ease-in-out bg-white border border-slate-100
+        h-[420px]
+        ${isActive ? 'flex-[5]' : 'flex-[1]'}
       `}
       onMouseEnter={onMouseEnter}
+      onClick={onClick}
     >
       {/* Background Image */}
       <img
         src={image}
         alt={title}
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = 'https://placehold.co/400x450/2d3748/ffffff?text=Image+Error'; }}
+        className={`absolute inset-0 w-full h-full object-contain p-6 z-0 transition-all duration-700 ${isActive ? 'scale-105 opacity-100' : 'opacity-0 scale-95'}`}
+        onError={(e) => {
+          (e.target as HTMLImageElement).onerror = null;
+          (e.target as HTMLImageElement).src =
+            'https://placehold.co/400x420/f8fafc/94a3b8?text=No+Image';
+        }}
       />
-      {/* Dark overlay for better text readability */}
-      <div className={`absolute inset-0 bg-black transition-opacity duration-700 z-10 ${isActive ? 'bg-opacity-20' : 'bg-opacity-50'}`}></div>
 
-      {/* Caption Text */}
+      {/* Caption */}
       <span
         className={`
-          absolute text-white text-lg font-semibold whitespace-nowrap z-20
-          transition-all duration-300 ease-in-out
-          ${
-            isActive
-              ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0' 
-              : 'w-auto text-left bottom-24 left-1/2 -translate-x-1/2 rotate-90'
-          }
+          absolute font-semibold whitespace-nowrap z-20 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-100
+          transition-all duration-500 ease-in-out shadow-sm
+          ${isActive
+            ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0 text-slate-900 text-sm tracking-wide'
+            : 'bottom-24 left-1/2 -translate-x-1/2 rotate-90 text-slate-500 text-xs tracking-widest opacity-80'}
         `}
       >
         {title}
       </span>
+
     </div>
   );
 };
 
+// --- Mobile Card (simple vertical card) ---
+const MobileCard = ({ item, onClick }: { item: Item; onClick: () => void }) => {
+  const title = item.title || item.name;
+  const image = resolveImage(item.imageUrl || item.image);
 
-// --- Main App Component ---
+  return (
+    <div
+      className="relative rounded-2xl overflow-hidden cursor-pointer shrink-0 w-[160px] h-[220px] snap-start bg-white border border-slate-100"
+      onClick={onClick}
+    >
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        onError={(e) => {
+          (e.target as HTMLImageElement).onerror = null;
+          (e.target as HTMLImageElement).src =
+            'https://placehold.co/160x220/f8fafc/94a3b8?text=No+Image';
+        }}
+      />
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[90%] text-center">
+        <span className="inline-block bg-white/90 backdrop-blur-md text-slate-900 px-3 py-1.5 rounded-full border border-slate-100 text-[10px] font-bold z-20 leading-tight shadow-sm">
+          {title}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+// --- Main Exported Component ---
 export function LandingAccordionItem({ items }: { items: Item[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   if (!items || items.length === 0) return null;
 
-  const handleItemHover = (index: number) => {
-    setActiveIndex(index);
-  };
-
   return (
-    <div className="bg-white font-sans overflow-hidden h-screen w-screen snap-start flex items-center">
-      <section className="container mx-auto px-4 py-12 md:py-24">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          
-          {/* Left Side: Text Content */}
-          <div className="w-full md:w-1/2 text-center md:text-left">
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 leading-[1.1] tracking-tighter">
-              Advanced Solutions for <span className="text-emerald-600">Oral Health</span>
-            </h1>
-            <p className="mt-6 text-lg text-slate-600 max-w-xl mx-auto md:mx-0">
-              Explore our range of clinical-grade products trusted by surgeons and dental professionals across the country.
+    <div className="bg-white font-sans overflow-hidden min-h-screen w-screen snap-start flex items-center">
+      <section className="container mx-auto px-4 sm:px-6 py-16 md:py-24">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10 lg:gap-16">
+
+          {/* ── Left: Text Content ── */}
+          <div className="w-full md:w-[42%] text-center md:text-left">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 leading-[1.1] tracking-tighter">
+              Advanced Solutions for{' '}
+              <span className="text-emerald-600">Oral Health</span>
+            </h2>
+            <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-xl mx-auto md:mx-0 leading-relaxed">
+              Explore our range of clinical-grade products trusted by surgeons and
+              dental professionals across the country.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col xs:flex-row items-center md:items-start justify-center md:justify-start gap-3">
               <a
                 href="#products"
-                className="inline-block bg-slate-900 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-slate-800 transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-slate-900 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-slate-800 transition-all duration-300 hover:scale-105 whitespace-nowrap"
               >
                 View Full Catalog
               </a>
+              <a
+                href="#about"
+                className="inline-flex items-center gap-2 border border-slate-200 text-slate-700 font-semibold px-7 py-4 rounded-xl hover:border-emerald-300 hover:text-emerald-600 transition-all duration-300 whitespace-nowrap"
+              >
+                Learn More
+              </a>
+            </div>
+
+            {/* Mini stat row */}
+            <div className="mt-10 flex items-center justify-center md:justify-start gap-8 text-center">
+              {[
+                { value: '8+', label: 'Products' },
+                { value: '500+', label: 'Surgeons' },
+                { value: '100%', label: 'Clinical Grade' },
+              ].map((s) => (
+                <div key={s.label}>
+                  <p className="text-2xl font-black text-emerald-600">{s.value}</p>
+                  <p className="text-xs text-slate-400 font-medium uppercase tracking-widest">{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Side: Image Accordion */}
-          <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-            <div 
-              className="flex flex-row items-center justify-start gap-4 overflow-x-auto p-4"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
-              <div className="flex flex-row gap-4 no-scrollbar">
+          {/* ── Right: Accordion ── */}
+          <div className="w-full md:w-[58%]">
+
+            {/* DESKTOP: Flex accordion (md and up) */}
+            <div className="hidden md:flex flex-row gap-3 h-[420px] w-full">
+              {items.map((item, index) => (
+                <AccordionItem
+                  key={item.id}
+                  item={item}
+                  isActive={index === activeIndex}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onClick={() => setActiveIndex(index)}
+                />
+              ))}
+            </div>
+
+            {/* MOBILE: Horizontal scroll strip */}
+            <div className="flex md:hidden flex-col gap-4">
+              {/* Active item — large featured card */}
+              <div className="relative w-full rounded-2xl overflow-hidden h-[320px] sm:h-[380px] bg-white border border-slate-100 flex items-center justify-center p-8">
+                <img
+                  src={resolveImage(items[activeIndex]?.imageUrl || items[activeIndex]?.image)}
+                  alt={items[activeIndex]?.title || items[activeIndex]?.name}
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).onerror = null;
+                    (e.target as HTMLImageElement).src =
+                      'https://placehold.co/600x320/f8fafc/94a3b8?text=No+Image';
+                  }}
+                />
+                <div className="absolute bottom-5 left-5">
+                  <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full border border-slate-100 text-slate-900 text-sm font-bold shadow-sm inline-block">
+                    {items[activeIndex]?.title || items[activeIndex]?.name}
+                  </span>
+                </div>
+              </div>
+
+              {/* Thumbnail strip */}
+              <div
+                className="flex flex-row gap-3 overflow-x-auto pb-2"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
                 {items.map((item, index) => (
-                  <AccordionItem
+                  <button
                     key={item.id}
-                    item={item}
-                    isActive={index === activeIndex}
-                    onMouseEnter={() => handleItemHover(index)}
-                  />
+                    onClick={() => setActiveIndex(index)}
+                    className={`relative shrink-0 w-[80px] h-[80px] rounded-xl overflow-hidden border-2 transition-all duration-300
+                      ${index === activeIndex
+                        ? 'border-emerald-500 scale-105'
+                        : 'border-transparent opacity-70 hover:opacity-100'}
+                    `}
+                  >
+                    <img
+                      src={resolveImage(item.imageUrl || item.image)}
+                      alt={item.title || item.name}
+                      className="w-full h-full object-contain p-2 bg-white"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).onerror = null;
+                        (e.target as HTMLImageElement).src =
+                          'https://placehold.co/80x80/e2e8f0/94a3b8?text=?';
+                      }}
+                    />
+                    {index === activeIndex && (
+                      <div className="absolute inset-0 bg-emerald-500/20" />
+                    )}
+                  </button>
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </section>
