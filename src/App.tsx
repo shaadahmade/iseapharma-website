@@ -30,7 +30,7 @@ export default function App() {
       primaryUse: "Effective against gingivitis, plaque formation, and maintenance of oral hygiene.",
       size: "150 ml",
       benefits: ["Kills 99.9% of oral bacteria", "Reduces gum inflammation", "Prevents bleeding symptoms", "Long-lasting fresh breath"],
-      composition: "Chlorhexidine 0.2%, Sodium Fluoride 0.05%, Zinc Chloride 0.09%",
+      composition: "Chlorhexidine Gluconate Solution I.P. 0.2% w/v + Sodium Fluoride I.P. 0.05% w/v + Zinc Chloride I.P. 0.09% w/v",
       buyLink: "https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806"
     },
     {
@@ -43,7 +43,7 @@ export default function App() {
       primaryUse: "Broad spectrum anti-microbial protection for clinical dental health.",
       size: "100 ml",
       benefits: ["Prevents gum recession", "Gentle on sensitive tissues", "Alcohol-free formula", "Clinically proven efficacy"],
-      composition: "Chlorhexidine gluconate 0.2%",
+      composition: "Chlorhexidine Gluconate Solution I.P. 0.2% w/v",
       buyLink: "https://www.1mg.com/otc/periogum-plus-mouthwash-100ml-each-otc894806"
     },
     {
@@ -56,7 +56,7 @@ export default function App() {
       primaryUse: "Reduces tooth sensitivity caused by hot, cold, sweet or sour stimuli. Strengthens enamel and prevents cavities.",
       size: "100 ml",
       benefits: ["Relieves tooth sensitivity", "Strengthens tooth enamel", "Prevents cavities & dental caries", "Alcohol-free & sugar-free"],
-      composition: "Potassium Nitrate 3% w/v & Sodium Fluoride 0.2% w/v",
+      composition: "Potassium Nitrate I.P. 3% w/v + Sodium Fluoride I.P. 0.2% w/v",
       buyLink: "https://www.iesapharma.com/search/all?name=PerioGum-KF"
     },
     {
@@ -69,7 +69,7 @@ export default function App() {
       primaryUse: "Relief from oral pain and inflammation, post-dental surgery, oral mucositis, and sore throat.",
       size: "150 ml",
       benefits: ["Local analgesic & anesthetic effect", "Reduces post-surgery swelling", "Relief from oral mucositis", "Soothes sore throat & pharyngitis"],
-      composition: "Benzydamine HCl 0.15% w/v",
+      composition: "Benzydamine Hydrochloride B.P. 0.15% w/v",
       buyLink: "https://www.iesapharma.com/search/all?name=Periogum-BZ"
     },
     {
@@ -82,7 +82,7 @@ export default function App() {
       primaryUse: "Treatment of acute mucosal infections of mouth and pharynx, oral hygiene during and after dental surgery, gingivitis, and mouth ulcers.",
       size: "100 ml",
       benefits: ["High bactericidal rate", "Reduces MRSA & S. aureus infections", "More effective than chlorhexidine gluconate", "Prevents wound infection"],
-      composition: "Povidone Iodine 2% w/v",
+      composition: "Povidone-Iodine I.P. 2.0% w/v (Available Iodine 0.2% w/v)",
       buyLink: "https://www.iesapharma.com/search/all?name=Esadine"
     },
     // --- GUM PAINT ---
@@ -96,7 +96,7 @@ export default function App() {
       primaryUse: "Direct application for swollen, spongy, and receding gums.",
       size: "15 ml",
       benefits: ["Stops gum bleeding instantly", "Tightens loose gums", "Antiseptic action", "Localized clinical treatment"],
-      composition: "Iodine, Potassium Iodide, Tannic Acid & Glycerin",
+      composition: "Iodine IP, Potassium Iodide IP, Tannic Acid IP, Menthol IP, Thymol & Glycerine IP",
       buyLink: "https://www.iesapharma.com/search/all?name=Orogum"
     },
     {
@@ -109,7 +109,7 @@ export default function App() {
       primaryUse: "Targeted therapy for chronic gum issues and tissue maintenance.",
       size: "15 ml",
       benefits: ["Closes interdental gaps", "Strengthens periodontal bond", "Reduces tooth mobility", "Clinical precision formula"],
-      composition: "Tannic Acid, Zinc Chloride & Cetrimide",
+      composition: "Tannic Acid IP 2.0% w/v + Zinc Chloride IP 1.0% w/v + Cetrimide IP 0.1% w/v",
       buyLink: "https://www.iesapharma.com/search/all?name=Orogum-T"
     },
     // --- ORAL GEL ---
@@ -123,7 +123,7 @@ export default function App() {
       primaryUse: "Soothing relief for mouth ulcers and oral lesions.",
       size: "10g Tube",
       benefits: ["Instant numbing effect", "Promotes faster healing", "Forms protective layer", "Sugar-free gel base"],
-      composition: "Lignocaine HCl 2.0% w/v + Choline Salicylate 8.7% w/v + Benzalkonium Chloride 0.01% w/v",
+      composition: "Lignocaine Hydrochloride I.P. 2.0% w/v + Choline Salicylate 8.7% w/v + Benzalkonium Chloride I.P. 0.01% w/v",
       buyLink: "https://www.1mg.com/search/all?name=Lignowin"
     },
     {
@@ -136,7 +136,7 @@ export default function App() {
       primaryUse: "Treatment of gingivitis, periodontitis, aphthous ulcers, oral mucositis, and denture irritation.",
       size: "10g Tube",
       benefits: ["Triple-action antiseptic formula", "Targets anaerobic bacteria", "Instant pain numbing", "Promotes gum tissue healing"],
-      composition: "Lignocaine 1% + Chlorhexidine Gluconate 1% + Metronidazole 1%",
+      composition: "Metronidazole Benzoate I.P. eq. to Metronidazole 1.0% w/w + Chlorhexidine Gluconate Solution I.P. 0.25% w/w + Lignocaine Hydrochloride I.P. 2.0% w/w",
       buyLink: "https://www.iesapharma.com/search/all?name=Lignowin-M"
     },
     {
@@ -149,7 +149,7 @@ export default function App() {
       primaryUse: "Treatment of gingivitis, periodontitis, oral ulcers, infections, and pre/post dental procedures.",
       size: "10g Tube",
       benefits: ["Dual antiseptic & antibacterial action", "Reduces dry socket post-extraction", "Heals mouth ulcers", "Fights bacterial & protozoal infections"],
-      composition: "Chlorhexidine Gluconate 0.25% + Ornidazole 1%",
+      composition: "Chlorhexidine Gluconate I.P. 0.25% w/w + Ornidazole I.P. 1.0% w/w",
       buyLink: "https://www.iesapharma.com/search/all?name=Chlorhex-O"
     },
     // --- TABLETS ---
@@ -163,7 +163,7 @@ export default function App() {
       primaryUse: "Relief from pain, inflammation and oedema associated with dental procedures and oral surgeries.",
       size: "10x10 Tablets",
       benefits: ["Fast-acting anti-inflammatory", "Reduces post-surgical swelling", "Enzyme (Serratiopeptidase) for faster recovery", "Professional dental strength"],
-      composition: "Aceclofenac 100mg + Paracetamol 325mg + Serratiopeptidase 15mg",
+      composition: "Aceclofenac I.P. 100mg + Paracetamol I.P. 325mg + Serratiopeptidase I.P. 15mg",
       buyLink: "https://www.iesapharma.com/search/all?name=Morepep-SP"
     },
     {
@@ -176,7 +176,7 @@ export default function App() {
       primaryUse: "Relief from dental pain, tooth extraction pain, and post-operative pain and fever.",
       size: "10x10 Tablets",
       benefits: ["Rapid pain relief", "Reduces fever", "Anti-inflammatory action", "Well tolerated formula"],
-      composition: "Aceclofenac 100mg + Paracetamol 325mg",
+      composition: "Aceclofenac I.P. 100mg + Paracetamol I.P. 325mg",
       buyLink: "https://www.iesapharma.com/search/all?name=Morpep-P"
     },
     // --- OTHER ---
@@ -203,7 +203,7 @@ export default function App() {
       primaryUse: "Adjunctive therapy for periodontal inflammation, post-operative healing, oral lichen planus, and leukoplakia.",
       size: "10x10 Softgel Capsules",
       benefits: ["Reduces gingival inflammation", "Accelerates wound healing post-surgery", "Antioxidant protection for gum tissue", "Supports immune defense"],
-      composition: "Lycopene (5mg) + Beta Carotene (10mg) + Selenium (75mcg) + Zinc (27.5mg) + Copper (1mg) + Alpha Lipoic Acid (50mg) + Vitamin E (10IU)",
+      composition: "Lycopene 5mg + Beta Carotene 10mg + Selenium 75mcg + Zinc 27.5mg + Copper 1mg + Alpha Lipoic Acid 50mg + Vitamin E 10IU",
       buyLink: "https://www.iesapharma.com/search/all?name=OSF-Band"
     },
     {
@@ -216,6 +216,7 @@ export default function App() {
       primaryUse: "Maximum protection and grip for clinical procedures.",
       size: "Box of 100",
       benefits: ["Excellent tactile sensitivity", "Micro-roughened surface", "Powder-free option", "High tear resistance"],
+      composition: "Premium Quality Natural Rubber Latex",
       buyLink: "https://www.iesapharma.com/search/all?name=IesaGuard"
     },
     {
@@ -228,6 +229,7 @@ export default function App() {
       primaryUse: "Nutritional support for post-dental surgery recovery.",
       size: "200g Tin",
       benefits: ["Rich in essential amino acids", "Antioxidant protection", "Supports immune system", "Easy to digest"],
+      composition: "Whey Protein, DHA, GLA, Vitamins & Minerals with Antioxidants",
       buyLink: "https://www.iesapharma.com/search/all?name=Protiesa"
     },
   ];
@@ -318,7 +320,7 @@ export default function App() {
                         <Beaker className="text-emerald-600 shrink-0" size={20} />
                         <div>
                           <h4 className="font-bold text-slate-800 text-xs sm:text-base">Composition</h4>
-                          <p className="text-emerald-700 text-[11px] sm:text-sm font-medium line-clamp-1 italic">{selectedProduct.composition}</p>
+                          <p className="text-emerald-700 text-[11px] sm:text-sm font-medium italic">{selectedProduct.composition}</p>
                         </div>
                       </div>
                     )}
