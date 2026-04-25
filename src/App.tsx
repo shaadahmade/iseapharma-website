@@ -12,6 +12,7 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [webglSupported, setWebglSupported] = useState(true);
+  const [fallbackImageIndex, setFallbackImageIndex] = useState(0);
 
   // WebGL Detection
   useEffect(() => {
@@ -23,6 +24,16 @@ export default function App() {
       setWebglSupported(false);
     }
   }, []);
+
+  // Fallback Slideshow Interval
+  useEffect(() => {
+    if (!webglSupported) {
+      const interval = setInterval(() => {
+        setFallbackImageIndex((prev) => (prev + 1) % products.length);
+      }, 4000); // Change image every 4 seconds
+      return () => clearInterval(interval);
+    }
+  }, [webglSupported, products.length]);
 
 
   // Close mobile menu on category change
@@ -277,16 +288,30 @@ export default function App() {
         <Scene onBottleClick={() => setSelectedProduct(products[0])} />
       ) : (
         <div className="fixed inset-0 z-[-1] flex items-center justify-center bg-gradient-to-b from-slate-50 to-white overflow-hidden pointer-events-none">
-          <motion.img 
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            src="/images/periogum-plus.png" 
-            alt="Iesa Pharma Products"
-            className="w-full max-w-4xl h-auto object-contain opacity-40 drop-shadow-2xl grayscale-[0.2]"
-          />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={fallbackImageIndex}
+              initial={{ opacity: 0, scale: 0.9, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 1.1, x: -20 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 flex items-center justify-center p-12 sm:p-32"
+            >
+              <img 
+                src={products[fallbackImageIndex].image} 
+                alt={products[fallbackImageIndex].name}
+                className="w-full max-w-2xl h-auto max-h-[70vh] object-contain opacity-40 drop-shadow-[0_20px_50px_rgba(16,185,129,0.2)] grayscale-[0.2]"
+              />
+              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-center">
+                <p className="text-emerald-600/40 text-4xl sm:text-7xl font-black uppercase tracking-tighter italic opacity-50">
+                  {products[fallbackImageIndex].name}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+          
           {/* Subtle glow for the fallback */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[150px]" />
         </div>
       )}
 
