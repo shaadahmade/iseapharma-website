@@ -304,7 +304,7 @@ export default function App() {
                 <div className="p-4 sm:p-10 flex-grow">
  
                    <h2 className="text-2xl sm:text-5xl font-bold text-slate-900 mb-1 sm:mb-4">{selectedProduct.name}</h2>
-                   <p className="text-sm sm:text-xl text-slate-500 mb-4 sm:mb-8 leading-tight">{selectedProduct.subtitle}</p>
+                   <p className="text-sm sm:text-lg text-emerald-600 mb-4 sm:mb-8 leading-tight font-bold italic">{selectedProduct.composition}</p>
  
                    <div className="space-y-3 sm:space-y-6 mb-6 sm:mb-10">
                      <div className="flex gap-3 sm:gap-4 p-3 sm:p-5 bg-sky-50 rounded-xl sm:rounded-2xl border border-sky-100">
@@ -315,15 +315,7 @@ export default function App() {
                       </div>
                     </div>
 
-                    {selectedProduct.composition && (
-                      <div className="flex gap-3 sm:gap-4 p-3 sm:p-5 bg-emerald-50 rounded-xl sm:rounded-2xl border border-emerald-100">
-                        <Beaker className="text-emerald-600 shrink-0" size={20} />
-                        <div>
-                          <h4 className="font-bold text-slate-800 text-xs sm:text-base">Composition</h4>
-                          <p className="text-emerald-700 text-[11px] sm:text-sm font-medium italic">{selectedProduct.composition}</p>
-                        </div>
-                      </div>
-                    )}
+
 
                     <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       <div className="p-3 sm:p-5 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
@@ -773,12 +765,12 @@ export default function App() {
                       </div>
                       <div className="p-4 sm:p-8 flex flex-col flex-grow">
                         <h3 className="text-sm sm:text-xl font-bold mb-1 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
-                        <p className="text-[10px] sm:text-xs text-slate-500 mb-2 font-medium">{product.subtitle}</p>
-                        {product.composition && (
+                        <p className="text-[10px] sm:text-xs text-emerald-600 mb-2 font-bold italic line-clamp-2">{product.composition}</p>
+                        {/* {product.composition && (
                           <p className="text-[10px] sm:text-xs font-bold text-emerald-600 mb-3 italic">
                             {product.composition}
                           </p>
-                        )}
+                        )} */}
 
                         <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">{product.desc}</p>
 
