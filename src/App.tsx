@@ -11,6 +11,18 @@ export default function App() {
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [webglSupported, setWebglSupported] = useState(true);
+
+  // WebGL Detection
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const supported = !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+      setWebglSupported(supported);
+    } catch (e) {
+      setWebglSupported(false);
+    }
+  }, []);
 
 
   // Close mobile menu on category change
@@ -261,7 +273,22 @@ export default function App() {
       {/* Top Banner Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-emerald-500 z-[60]"></div>
 
-      <Scene onBottleClick={() => setSelectedProduct(products[0])} />
+      {webglSupported ? (
+        <Scene onBottleClick={() => setSelectedProduct(products[0])} />
+      ) : (
+        <div className="fixed inset-0 z-[-1] flex items-center justify-center bg-gradient-to-b from-slate-50 to-white overflow-hidden pointer-events-none">
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            src="/images/periogum-plus.png" 
+            alt="Iesa Pharma Products"
+            className="w-full max-w-4xl h-auto object-contain opacity-40 drop-shadow-2xl grayscale-[0.2]"
+          />
+          {/* Subtle glow for the fallback */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px]" />
+        </div>
+      )}
 
       <AnimatePresence>
         {selectedProduct && (

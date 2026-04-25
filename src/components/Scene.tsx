@@ -34,7 +34,7 @@ export function Scene({ onBottleClick }: { onBottleClick?: () => void }) {
             penumbra={1} 
             intensity={2} 
             castShadow 
-            shadow-mapSize={[1024, 1024]}
+            shadow-mapSize={[512, 512]}
           />
           
           {/* Fill Light */}
