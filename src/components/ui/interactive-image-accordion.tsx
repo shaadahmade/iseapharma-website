@@ -31,7 +31,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter, onClick }: AccordionItemP
     <div
       className={`
         relative rounded-2xl overflow-hidden cursor-pointer shrink-0 snap-start
-        transition-all duration-700 ease-in-out bg-white border border-slate-100
+        transition-all duration-300 ease-in-out bg-white border border-slate-100
         h-[420px]
         ${isActive ? 'w-[300px] lg:w-[360px]' : 'w-[70px] lg:w-[80px]'}
       `}
@@ -42,7 +42,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter, onClick }: AccordionItemP
       <img
         src={image}
         alt={title}
-        className={`absolute inset-0 w-full h-full object-contain p-6 z-0 transition-all duration-700 ${isActive ? 'scale-105 opacity-100' : 'opacity-0 scale-95'}`}
+        className={`absolute inset-0 w-full h-full object-contain p-6 z-0 transition-all duration-300 ${isActive ? 'scale-105 opacity-100' : 'opacity-0 scale-95'}`}
         onError={(e) => {
           (e.target as HTMLImageElement).onerror = null;
           (e.target as HTMLImageElement).src =
@@ -54,7 +54,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter, onClick }: AccordionItemP
       <span
         className={`
           absolute font-semibold whitespace-nowrap z-20 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-100
-          transition-all duration-500 ease-in-out shadow-sm
+          transition-all duration-300 ease-in-out shadow-sm
           ${isActive
             ? 'bottom-6 left-1/2 -translate-x-1/2 rotate-0 text-slate-900 text-sm tracking-wide'
             : 'bottom-24 left-1/2 -translate-x-1/2 rotate-90 text-slate-500 text-xs tracking-widest opacity-80'}
@@ -154,11 +154,11 @@ export function LandingAccordionItem({ items }: { items: Item[] }) {
             <div className="flex flex-col gap-4 sm:gap-6">
 
               {/* Active / Featured Product Card */}
-              <div className="relative w-full rounded-[2rem] overflow-hidden h-[260px] sm:h-[460px] bg-white border border-slate-100 flex items-center justify-center p-6 sm:p-12 shadow-sm transition-all duration-500">
+              <div className="relative w-full rounded-[2rem] overflow-hidden h-[260px] sm:h-[460px] bg-white border border-slate-100 flex items-center justify-center p-6 sm:p-12 shadow-sm transition-all duration-300">
                 <img
                   src={resolveImage(items[activeIndex]?.imageUrl || items[activeIndex]?.image)}
                   alt={items[activeIndex]?.title || items[activeIndex]?.name}
-                  className="w-full h-full object-contain transition-transform duration-700 scale-105"
+                  className="w-full h-full object-contain transition-transform duration-300 scale-105"
                   onError={(e) => {
                     (e.target as HTMLImageElement).onerror = null;
                     (e.target as HTMLImageElement).src =

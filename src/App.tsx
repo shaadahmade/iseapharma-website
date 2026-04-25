@@ -550,9 +550,8 @@ export default function App() {
                 {/* On mobile: glass card wraps the text so it's readable over the 3D scene */}
                 <div className="lg:contents">
                   <motion.div
-                    initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="text-center bg-white/70 backdrop-blur-md lg:backdrop-blur-none rounded-3xl lg:rounded-none p-6 sm:p-8 lg:p-0 shadow-xl shadow-slate-200/40 lg:shadow-none border border-white/60 lg:border-none"
                   >
 
@@ -631,10 +630,8 @@ export default function App() {
             <section id="about" className="min-h-[60vh] lg:min-h-screen w-full py-16 flex items-center justify-center px-4 sm:px-6 bg-white/40 backdrop-blur-2xl relative z-10 border-y border-white/20">
               <div className="max-w-4xl mx-auto text-center">
                 <motion.div
-                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.4 }}
                 >
                   <h2 className="text-4xl sm:text-6xl font-bold mb-8 sm:mb-12">Our Vision</h2>
                   <p className="text-xl sm:text-4xl text-slate-600 leading-relaxed italic font-medium px-4">
@@ -670,10 +667,8 @@ export default function App() {
             <section className="min-h-[60vh] lg:min-h-screen w-full py-16 flex items-center justify-center relative z-10 bg-white">
               <div className="w-full">
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
                   className="relative overflow-hidden bg-slate-950 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border-y border-white/5"
                 >
                   {/* Background Polish */}
@@ -751,9 +746,7 @@ export default function App() {
             <section id="products" className="min-h-[60vh] lg:min-h-screen w-full py-12 lg:py-24 flex items-center px-4 sm:px-6 bg-white relative z-10 overflow-hidden">
               <div className="max-w-7xl mx-auto relative">
                 <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
+                  animate={{ opacity: 1, x: 0 }}
                   className="flex items-end justify-between mb-10 sm:mb-16"
                 >
                   <div>
@@ -766,14 +759,10 @@ export default function App() {
                   {products.map((product, idx) => (
                     <motion.div
                       key={idx}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{
-                        duration: 0.6,
-                        delay: idx * 0.1,
-                        type: "spring",
-                        damping: 20
+                        duration: 0.3,
+                        delay: idx * 0.05
                       }}
                       whileHover={{ y: -10 }}
                       onClick={() => setSelectedProduct(product)}
@@ -887,19 +876,16 @@ export default function App() {
             <section className="min-h-[60vh] lg:min-h-screen w-full py-16 flex items-center justify-center px-4 sm:px-6 bg-white relative z-10">
               <div className="max-w-7xl mx-auto">
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
                 >
                   <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 sm:mb-16">Trusted Testimonials</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
                     {testimonials.map((t, idx) => (
                       <motion.div
                         key={idx}
-                        initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.2 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.1 }}
                         className="p-6 sm:p-10 bg-slate-50 rounded-2xl sm:rounded-3xl relative"
                       >
                         <Star className="text-yellow-400 fill-current mb-6" size={24} />
@@ -1011,9 +997,7 @@ export default function App() {
       <section id="contact" className="min-h-[60vh] lg:min-h-screen w-full py-12 lg:py-24 flex items-center px-4 sm:px-6 bg-slate-950 relative z-10 border-t border-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto relative">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
+            animate={{ opacity: 1, y: 0 }}
             className="text-center mb-20"
           >
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tighter text-white">
@@ -1028,9 +1012,7 @@ export default function App() {
 
             {/* Contact Details Card */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               className="lg:col-span-4 space-y-6"
             >
               <div className="p-7 sm:p-10 bg-slate-900/50 backdrop-blur-xl rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 h-full shadow-2xl">
@@ -1093,10 +1075,8 @@ export default function App() {
 
             {/* Message Form Card */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
               className="lg:col-span-5"
             >
               <div className="p-6 sm:p-10 bg-slate-900/50 backdrop-blur-xl rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 shadow-2xl">
@@ -1137,10 +1117,8 @@ export default function App() {
 
             {/* Map Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
               className="lg:col-span-3 h-full"
             >
               <div className="p-4 bg-slate-900/50 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-2xl h-full flex flex-col">
@@ -1149,7 +1127,6 @@ export default function App() {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.121654165!2d80.9859!3d26.8859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDUzJzA5LjIiTiA4MMKwNTknMDkuMiJF!5e0!3m2!1sen!2sin!4v1690789000000!5m2!1sen!2sin"
                     className="absolute inset-0 w-full h-full border-0 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-700"
                     allowFullScreen
-                    loading="lazy"
                     title="Office Map"
                   ></iframe>
 
