@@ -311,7 +311,7 @@ export default function App() {
                        <Info className="text-sky-600 shrink-0" size={20} />
                       <div>
                         <h4 className="font-bold text-slate-800 text-xs sm:text-base">Primary Use</h4>
-                        <p className="text-slate-600 text-[11px] sm:text-sm line-clamp-2">{selectedProduct.primaryUse}</p>
+                        <p className="text-slate-600 text-[11px] sm:text-sm">{selectedProduct.primaryUse}</p>
                       </div>
                     </div>
 
@@ -775,12 +775,12 @@ export default function App() {
                         <h3 className="text-sm sm:text-xl font-bold mb-1 text-slate-900 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{product.name}</h3>
                         <p className="text-[10px] sm:text-xs text-slate-500 mb-2 font-medium">{product.subtitle}</p>
                         {product.composition && (
-                          <p className="text-[10px] sm:text-xs font-bold text-emerald-600 mb-3 line-clamp-2 italic">
+                          <p className="text-[10px] sm:text-xs font-bold text-emerald-600 mb-3 italic">
                             {product.composition}
                           </p>
                         )}
 
-                        <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2 flex-grow">{product.desc}</p>
+                        <p className="text-slate-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">{product.desc}</p>
 
                         <div className="flex items-center justify-between pt-4 border-t border-slate-50">
                           <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Medical Grade</span>
